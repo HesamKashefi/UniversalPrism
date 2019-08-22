@@ -144,12 +144,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
 
         private IRegionManager GetAttachedRegionManager()
         {
-            if (this.attachedRegionManagerWeakReference != null)
-            {
-                return this.attachedRegionManagerWeakReference.Target as IRegionManager;
-            }
-
-            return null;
+            return attachedRegionManagerWeakReference?.Target as IRegionManager;
         }
     }
 }

@@ -20,13 +20,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         /// </summary>
         public static readonly string BehaviorKey = "SyncRegionContextWithHost";
 
-        private ObservableObject<object> HostControlRegionContext
-        {
-            get
-            {
-                return RegionContext.GetObservableContext(this.hostControl);
-            }
-        }
+        private ObservableObject<object> HostControlRegionContext => RegionContext.GetObservableContext(this.hostControl);
 
         /// <summary>
         /// Gets or sets the <see cref="DependencyObject"/> that the <see cref="IRegion"/> is attached to.
@@ -37,10 +31,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         /// </value>
         public DependencyObject HostControl
         {
-            get
-            {
-                return hostControl;
-            }
+            get => hostControl;
             set
             {
                 if (IsAttached)

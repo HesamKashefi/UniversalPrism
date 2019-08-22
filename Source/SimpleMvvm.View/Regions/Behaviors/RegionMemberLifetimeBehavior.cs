@@ -89,8 +89,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
                 return lifetimeAttribute;
             }
 
-            var frameworkElement = inactiveView as FrameworkElement;
-            if (frameworkElement != null && frameworkElement.DataContext != null)
+            if (inactiveView is FrameworkElement frameworkElement && frameworkElement.DataContext != null)
             {
                 var dataContext = frameworkElement.DataContext;
                 var contextLifetimeAttribute =

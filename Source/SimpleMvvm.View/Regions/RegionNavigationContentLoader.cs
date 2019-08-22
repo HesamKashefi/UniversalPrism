@@ -54,14 +54,12 @@ namespace SimpleMvvm.View.Regions
                 candidates.Where(
                     v =>
                     {
-                        var navigationAware = v as INavigationAware;
-                        if (navigationAware != null && !navigationAware.IsNavigationTarget(navigationContext))
+                        if (v is INavigationAware navigationAware && !navigationAware.IsNavigationTarget(navigationContext))
                         {
                             return false;
                         }
 
-                        var frameworkElement = v as FrameworkElement;
-                        if (frameworkElement == null)
+                        if (!(v is FrameworkElement frameworkElement))
                         {
                             return true;
                         }
@@ -116,8 +114,7 @@ namespace SimpleMvvm.View.Regions
             if (navigationContext == null) throw new ArgumentNullException(nameof(navigationContext));
 
             var candidateTargetContract = UriParsingHelper.GetAbsolutePath(navigationContext.Uri);
-            candidateTargetContract = candidateTargetContract.TrimStart('/');
-            return candidateTargetContract;
+            return candidateTargetContract.TrimStart('/');
         }
 
         /// <summary>

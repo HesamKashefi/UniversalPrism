@@ -36,8 +36,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         {
             foreach (var view in views)
             {
-                DependencyObject dependencyObjectView = view as DependencyObject;
-                if (dependencyObjectView != null)
+                if (view is DependencyObject dependencyObjectView)
                 {
                     ObservableObject<object> contextWrapper = RegionContext.GetObservableContext(dependencyObjectView);
                     contextWrapper.Value = context;
@@ -49,8 +48,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         {
             foreach (var view in views)
             {
-                var dependencyObject = view as DependencyObject;
-                if (dependencyObject != null)
+                if (view is DependencyObject dependencyObject)
                 {
                     ObservableObject<object> viewRegionContext = RegionContext.GetObservableContext(dependencyObject);
                     viewRegionContext.PropertyChanged += this.ViewRegionContext_OnPropertyChangedEvent;
@@ -62,8 +60,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         {
             foreach (var view in views)
             {
-                var dependencyObject = view as DependencyObject;
-                if (dependencyObject != null)
+                if (view is DependencyObject dependencyObject)
                 {
                     ObservableObject<object> viewRegionContext = RegionContext.GetObservableContext(dependencyObject);
                     viewRegionContext.PropertyChanged -= this.ViewRegionContext_OnPropertyChangedEvent;

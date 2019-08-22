@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace SimpleMvvm.View.Regions

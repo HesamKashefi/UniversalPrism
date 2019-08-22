@@ -7,7 +7,6 @@ namespace SimpleMvvm.View.Regions
     /// </summary>
     public interface IRegionBehaviorCollection : IEnumerable<KeyValuePair<string, IRegionBehavior>>
     {
-
         /// <summary>
         /// Adds a <see cref="IRegionBehavior"/> to the collection, using the specified key as an indexer. 
         /// </summary>

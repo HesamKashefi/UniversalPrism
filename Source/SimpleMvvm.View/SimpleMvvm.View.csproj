@@ -126,6 +126,8 @@
     <Compile Include="Common\MvvmHelpers.cs" />
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\UriParsingHelper.cs" />
+    <Compile Include="Delegate\DelegateReference.cs" />
+    <Compile Include="Delegate\IDelegateReference.cs" />
     <Compile Include="Delegate\WeakDelegatesManager.cs" />
     <Compile Include="IFrameFacade.cs" />
     <Compile Include="IResumeArgs.cs" />

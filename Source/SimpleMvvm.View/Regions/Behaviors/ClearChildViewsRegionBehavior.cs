@@ -62,8 +62,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         {
             foreach (var view in region.Views)
             {
-                DependencyObject dependencyObject = view as DependencyObject;
-                if (dependencyObject != null)
+                if (view is DependencyObject dependencyObject)
                 {
                     if (GetClearChildViews(dependencyObject))
                     {

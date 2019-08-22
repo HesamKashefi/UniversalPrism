@@ -54,7 +54,7 @@ namespace SimpleMvvm.View.Regions
 
         private void GetNavigationParameters(NavigationParameters navigationParameters)
         {
-            if (Parameters == null || NavigationService == null || NavigationService.Region == null)
+            if (Parameters == null || NavigationService?.Region == null)
             {
                 Parameters = new NavigationParameters();
                 return;

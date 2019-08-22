@@ -1,5 +1,3 @@
-
-
 using System;
 
 namespace SimpleMvvm.View.Regions
@@ -15,10 +13,7 @@ namespace SimpleMvvm.View.Regions
         /// <param name="navigationContext">The navigation context.</param>
         public RegionNavigationEventArgs(NavigationContext navigationContext)
         {
-            if (navigationContext == null)
-                throw new ArgumentNullException(nameof(navigationContext));
-
-            this.NavigationContext = navigationContext;
+            this.NavigationContext = navigationContext ?? throw new ArgumentNullException(nameof(navigationContext));
         }
 
         /// <summary>
@@ -34,17 +29,6 @@ namespace SimpleMvvm.View.Regions
         /// <remarks>
         /// This is a convenience accessor around NavigationContext.Uri.
         /// </remarks>
-        public Uri Uri
-        {
-            get
-            {
-                if (this.NavigationContext != null)
-                {
-                    return this.NavigationContext.Uri;
-                }
-
-                return null;
-            }
-        }
+        public Uri Uri => NavigationContext?.Uri;
     }
 }

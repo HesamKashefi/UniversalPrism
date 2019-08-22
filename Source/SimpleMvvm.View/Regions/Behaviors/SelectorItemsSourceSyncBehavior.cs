@@ -73,14 +73,14 @@ namespace SimpleMvvm.View.Regions.Behaviors
                 int startIndex = e.NewStartingIndex;
                 foreach (object newItem in e.NewItems)
                 {
-                    this.hostControl.Items.Insert(startIndex++, newItem);
+                    this.hostControl.Items?.Insert(startIndex++, newItem);
                 }
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 foreach (object oldItem in e.OldItems)
                 {
-                    this.hostControl.Items.Remove(oldItem);
+                    this.hostControl.Items?.Remove(oldItem);
                 }
             }
         }
@@ -142,8 +142,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
                 // This is needed to prevent the ActiveViews_CollectionChanged() method from firing. 
                 this.updatingActiveViewsInHostControlSelectionChanged = true;
 
-                object source;
-                source = e.OriginalSource;
+                var source = e.OriginalSource;
 
                 if (source == sender)
                 {

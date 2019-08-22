@@ -81,9 +81,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
 
         private void InvokeOnSynchronizedActiveAwareChildren(object item, Action<IActiveAware> invocation)
         {
-            var dependencyObjectView = item as DependencyObject;
-
-            if (dependencyObjectView != null)
+            if (item is DependencyObject dependencyObjectView)
             {
                 // We are assuming that any scoped region managers are attached directly to the 
                 // view.
@@ -111,9 +109,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
                 return true;
             }
 
-            var viewAsFrameworkElement = view as FrameworkElement;
-
-            if (viewAsFrameworkElement != null)
+            if (view is FrameworkElement viewAsFrameworkElement)
             {
                 var viewModel = viewAsFrameworkElement.DataContext;
 

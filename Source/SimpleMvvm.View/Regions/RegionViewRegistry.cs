@@ -32,8 +32,8 @@ namespace SimpleMvvm.View.Regions
         /// </summary>
         public event EventHandler<ViewRegisteredEventArgs> ContentRegistered
         {
-            add { this.contentRegisteredListeners.AddListener(value); }
-            remove { this.contentRegisteredListeners.RemoveListener(value); }
+            add => this.contentRegisteredListeners.AddListener(value);
+            remove => this.contentRegisteredListeners.RemoveListener(value);
         }
 
         /// <summary>

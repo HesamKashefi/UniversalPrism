@@ -1,5 +1,4 @@
-﻿using Prism.Events;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleMvvm.View.Delegate
@@ -19,6 +18,10 @@ namespace SimpleMvvm.View.Delegate
             this.listeners.RemoveAll(reference => reference.TargetEquals(null) || reference.TargetEquals(listener));
         }
 
+        /// <summary>
+        /// Executes all of the delegates
+        /// </summary>
+        /// <param name="args"></param>
         public void Raise(params object[] args)
         {
             this.listeners.RemoveAll(listener => listener.TargetEquals(null));

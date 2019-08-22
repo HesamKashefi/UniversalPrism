@@ -13,11 +13,14 @@ namespace SimpleMvvm.View.Regions
     /// </summary>
     public class RegionNavigationService : IRegionNavigationService
     {
+        #region Dependencies
         private readonly IServiceLocator serviceLocator;
         private readonly IRegionNavigationContentLoader regionNavigationContentLoader;
-        private IRegionNavigationJournal journal;
-        private NavigationContext currentNavigationContext;
+        private readonly IRegionNavigationJournal journal;
+        private NavigationContext currentNavigationContext; 
+        #endregion
 
+        #region Ctor
         /// <summary>
         /// Initializes a new instance of the <see cref="RegionNavigationService"/> class.
         /// </summary>
@@ -26,21 +29,14 @@ namespace SimpleMvvm.View.Regions
         /// <param name="journal">The journal.</param>
         public RegionNavigationService(IServiceLocator serviceLocator, IRegionNavigationContentLoader regionNavigationContentLoader, IRegionNavigationJournal journal)
         {
-            if (serviceLocator == null)
-                throw new ArgumentNullException(nameof(serviceLocator));
-
-            if (regionNavigationContentLoader == null)
-                throw new ArgumentNullException(nameof(regionNavigationContentLoader));
-
-            if (journal == null)
-                throw new ArgumentNullException(nameof(journal));
-
-            this.serviceLocator = serviceLocator;
-            this.regionNavigationContentLoader = regionNavigationContentLoader;
-            this.journal = journal;
+            this.serviceLocator = serviceLocator ?? throw new ArgumentNullException(nameof(serviceLocator));
+            this.regionNavigationContentLoader = regionNavigationContentLoader ?? throw new ArgumentNullException(nameof(regionNavigationContentLoader));
+            this.journal = journal ?? throw new ArgumentNullException(nameof(journal));
             this.journal.NavigationTarget = this;
         }
+        #endregion
 
+        #region Properties
         /// <summary>
         /// Gets or sets the region.
         /// </summary>
@@ -51,14 +47,10 @@ namespace SimpleMvvm.View.Regions
         /// Gets the journal.
         /// </summary>
         /// <value>The journal.</value>
-        public IRegionNavigationJournal Journal
-        {
-            get
-            {
-                return this.journal;
-            }
-        }
+        public IRegionNavigationJournal Journal => this.journal; 
+        #endregion
 
+        #region Events
         /// <summary>
         /// Raised when the region is about to be navigated to content.
         /// </summary>
@@ -66,10 +58,7 @@ namespace SimpleMvvm.View.Regions
 
         private void RaiseNavigating(NavigationContext navigationContext)
         {
-            if (this.Navigating != null)
-            {
-                this.Navigating(this, new RegionNavigationEventArgs(navigationContext));
-            }
+            Navigating?.Invoke(this, new RegionNavigationEventArgs(navigationContext));
         }
 
         /// <summary>
@@ -79,10 +68,7 @@ namespace SimpleMvvm.View.Regions
 
         private void RaiseNavigated(NavigationContext navigationContext)
         {
-            if (this.Navigated != null)
-            {
-                this.Navigated(this, new RegionNavigationEventArgs(navigationContext));
-            }
+            Navigated?.Invoke(this, new RegionNavigationEventArgs(navigationContext));
         }
 
         /// <summary>
@@ -92,18 +78,16 @@ namespace SimpleMvvm.View.Regions
 
         private void RaiseNavigationFailed(NavigationContext navigationContext, Exception error)
         {
-            if (this.NavigationFailed != null)
-            {
-                this.NavigationFailed(this, new RegionNavigationFailedEventArgs(navigationContext, error));
-            }
-        }
+            NavigationFailed?.Invoke(this, new RegionNavigationFailedEventArgs(navigationContext, error));
+        } 
+        #endregion
 
         /// <summary>
         /// Initiates navigation to the specified target.
         /// </summary>
         /// <param name="target">The target.</param>
         /// <param name="navigationCallback">A callback to execute when the navigation request is completed.</param>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Exception is marshalled to callback")]
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Exception is marshaled to callback")]
         public void RequestNavigate(Uri target, Action<NavigationResult> navigationCallback)
         {
             this.RequestNavigate(target, navigationCallback, null);
@@ -239,7 +223,7 @@ namespace SimpleMvvm.View.Regions
                 currentViewIndex + 1);
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Exception is marshalled to callback")]
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Exception is marshaled to callback")]
         private void ExecuteNavigation(NavigationContext navigationContext, object[] activeViews, Action<NavigationResult> navigationCallback)
         {
             try

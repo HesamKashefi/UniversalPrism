@@ -14,6 +14,5 @@ namespace SimpleMvvm.View.Regions
         /// Attaches the behavior to the specified region.
         /// </summary>
         void Attach();
-
     }
 }

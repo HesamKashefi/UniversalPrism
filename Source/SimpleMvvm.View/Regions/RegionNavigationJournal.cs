@@ -32,13 +32,7 @@ namespace SimpleMvvm.View.Regions
         /// Gets a value that indicates whether there is at least one entry in the back navigation history.
         /// </summary>
         /// <value><c>true</c> if the journal can go back; otherwise, <c>false</c>.</value>
-        public bool CanGoBack
-        {
-            get
-            {
-                return this.backStack.Count > 0;
-            }
-        }
+        public bool CanGoBack => this.backStack.Count > 0;
 
         /// <summary>
         /// Gets a value that indicates whether there is at least one entry in the forward navigation history.
@@ -46,13 +40,7 @@ namespace SimpleMvvm.View.Regions
         /// <value>
         /// 	<c>true</c> if this instance can go forward; otherwise, <c>false</c>.
         /// </value>
-        public bool CanGoForward
-        {
-            get
-            {
-                return this.forwardStack.Count > 0;
-            }
-        }
+        public bool CanGoForward => this.forwardStack.Count > 0;
 
         /// <summary>
         /// Navigates to the most recent entry in the back navigation history, or does nothing if no entry exists in back navigation.

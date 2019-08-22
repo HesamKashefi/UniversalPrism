@@ -44,7 +44,7 @@ namespace SimpleMvvm.View.Common
                 return uri;
             }
 
-            if ((uri != null) && !uri.OriginalString.StartsWith("/", StringComparison.Ordinal))
+            if (!uri.OriginalString.StartsWith("/", StringComparison.Ordinal))
             {
                 return new Uri("http://localhost/" + uri, UriKind.Absolute);
             }

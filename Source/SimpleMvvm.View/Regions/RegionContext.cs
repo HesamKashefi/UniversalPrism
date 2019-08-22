@@ -30,16 +30,12 @@ namespace SimpleMvvm.View.Regions
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            ObservableObject<object> context = view.GetValue(ObservableRegionContextProperty) as ObservableObject<object>;
+            if (view.GetValue(ObservableRegionContextProperty) is ObservableObject<object> context) return context;
 
-            if (context == null)
-            {
-                context = new ObservableObject<object>();
-                view.SetValue(ObservableRegionContextProperty, context);
-            }
+            context = new ObservableObject<object>();
+            view.SetValue(ObservableRegionContextProperty, context);
 
             return context;
         }
-
     }
 }
