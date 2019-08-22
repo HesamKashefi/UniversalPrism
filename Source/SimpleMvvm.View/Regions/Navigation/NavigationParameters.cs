@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     //TODO: Once UWP and Xamarin.Forms navigation has been implemented and stablized, see if we can move this class to the core Prism assembly.  Right now each platform has it's own implementation
     /// <summary>

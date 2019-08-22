@@ -1,12 +1,12 @@
-using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Windows.UI.Xaml;
+using CommonServiceLocator;
 using SimpleMvvm.View.Common;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides navigation for regions.

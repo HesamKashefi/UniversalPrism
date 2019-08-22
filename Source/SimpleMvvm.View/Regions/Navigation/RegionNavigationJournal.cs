@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides journaling of current, back, and forward navigation within regions.    
     /// </summary>
     public class RegionNavigationJournal : IRegionNavigationJournal
     {
-        private Stack<IRegionNavigationJournalEntry> backStack = new Stack<IRegionNavigationJournalEntry>();
-        private Stack<IRegionNavigationJournalEntry> forwardStack = new Stack<IRegionNavigationJournalEntry>();
+        private readonly Stack<IRegionNavigationJournalEntry> backStack = new Stack<IRegionNavigationJournalEntry>();
+        private readonly Stack<IRegionNavigationJournalEntry> forwardStack = new Stack<IRegionNavigationJournalEntry>();
 
         private bool isNavigatingInternal;
 

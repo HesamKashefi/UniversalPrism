@@ -1,4 +1,4 @@
-﻿namespace SimpleMvvm.View.Regions
+﻿namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides a way for objects involved in navigation to opt-out of being added to the IRegionNavigationJournal BackStack.

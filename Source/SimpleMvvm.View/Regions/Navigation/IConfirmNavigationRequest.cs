@@ -1,6 +1,6 @@
 using System;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides a way for objects involved in navigation to determine if a navigation request should continue.

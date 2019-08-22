@@ -1,6 +1,6 @@
 using System;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides methods to perform navigation.

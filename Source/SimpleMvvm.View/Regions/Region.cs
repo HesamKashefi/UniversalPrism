@@ -1,4 +1,5 @@
 using CommonServiceLocator;
+using SimpleMvvm.View.Regions.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -61,7 +62,7 @@ namespace SimpleMvvm.View.Regions
         }
 
         /// <summary>
-        /// Gets the name of the region that uniequely identifies the region within a <see cref="IRegionManager"/>.
+        /// Gets the name of the region that uniquely identifies the region within a <see cref="IRegionManager"/>.
         /// </summary>
         /// <value>The name of the region.</value>
         public string Name
@@ -72,7 +73,7 @@ namespace SimpleMvvm.View.Regions
             {
                 if (this.name != null && this.name != value)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "CannotChangeRegionNameException", this.name));
+                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "CannotChangeRegionNameException - {0}", this.name));
                 }
 
                 if (string.IsNullOrEmpty(value))
@@ -94,7 +95,7 @@ namespace SimpleMvvm.View.Regions
             get
             {
                 return this.views ?? (this.views = new ViewsCollection(ItemMetadataCollection, x => true)
-                           {SortComparison = this.sort});
+                { SortComparison = this.sort });
             }
         }
 
@@ -108,7 +109,7 @@ namespace SimpleMvvm.View.Regions
             {
                 if (this.views == null)
                 {
-                    this.views = new ViewsCollection(ItemMetadataCollection, x => true) {SortComparison = this.sort};
+                    this.views = new ViewsCollection(ItemMetadataCollection, x => true) { SortComparison = this.sort };
                 }
 
                 return this.activeViews ?? (this.activeViews =
@@ -211,7 +212,7 @@ namespace SimpleMvvm.View.Regions
         {
             if (string.IsNullOrEmpty(viewName))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "StringCannotBeNullOrEmpty", "viewName"));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "StringCannotBeNullOrEmpty - {0}", "viewName"));
             }
 
             return this.Add(view, viewName, false);
@@ -295,7 +296,7 @@ namespace SimpleMvvm.View.Regions
         {
             if (string.IsNullOrEmpty(viewName))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "StringCannotBeNullOrEmpty", "viewName"));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "StringCannotBeNullOrEmpty - {0}", "viewName"));
             }
 
             ItemMetadata metadata = this.ItemMetadataCollection.FirstOrDefault(x => x.Name == viewName);
@@ -336,7 +337,7 @@ namespace SimpleMvvm.View.Regions
             {
                 if (this.ItemMetadataCollection.FirstOrDefault(x => x.Name == viewName) != null)
                 {
-                    throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "RegionViewNameExistsException", viewName));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "RegionViewNameExistsException - {0}", viewName));
                 }
                 itemMetadata.Name = viewName;
             }

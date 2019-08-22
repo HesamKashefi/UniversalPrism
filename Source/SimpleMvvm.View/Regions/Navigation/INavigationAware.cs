@@ -1,4 +1,4 @@
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides a way for objects involved in navigation to be notified of navigation activities.

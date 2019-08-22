@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using SimpleMvvm.View.Common;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Encapsulates information about a navigation request.

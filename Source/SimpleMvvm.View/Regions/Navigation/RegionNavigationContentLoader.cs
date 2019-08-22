@@ -1,12 +1,12 @@
-using CommonServiceLocator;
-using SimpleMvvm.View.Common;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Windows.UI.Xaml;
+using CommonServiceLocator;
+using SimpleMvvm.View.Common;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Implementation of <see cref="IRegionNavigationContentLoader"/> that relies on a <see cref="IServiceLocator"/>

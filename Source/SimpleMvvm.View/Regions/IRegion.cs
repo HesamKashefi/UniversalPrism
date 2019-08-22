@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using Windows.UI.Xaml;
+using SimpleMvvm.View.Regions.Navigation;
 
 namespace SimpleMvvm.View.Regions
 {

@@ -11,6 +11,7 @@ using System.Threading;
 using Windows.UI.Xaml;
 using SimpleMvvm.View.Common;
 using SimpleMvvm.View.Delegate;
+using SimpleMvvm.View.Regions.Navigation;
 
 namespace SimpleMvvm.View.Regions
 {
@@ -26,6 +27,7 @@ namespace SimpleMvvm.View.Regions
 
         private static readonly WeakDelegatesManager updatingRegionsListeners = new WeakDelegatesManager();
 
+        #region Region Name
         /// <summary>
         /// Identifies the RegionName attached property.
         /// </summary>
@@ -70,9 +72,18 @@ namespace SimpleMvvm.View.Regions
             return regionTarget.GetValue(RegionNameProperty) as string;
         }
 
+        private static void OnSetRegionNameCallback(DependencyObject element, DependencyPropertyChangedEventArgs args)
+        {
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                CreateRegion(element);
+            }
+        }
+        #endregion
+
+        #region Observable Region
         private static readonly DependencyProperty ObservableRegionProperty =
             DependencyProperty.RegisterAttached("ObservableRegion", typeof(ObservableObject<IRegion>), typeof(RegionManager), null);
-
 
         /// <summary>
         /// Returns an <see cref="ObservableObject{T}"/> wrapper that can hold an <see cref="IRegion"/>. Using this wrapper
@@ -95,24 +106,10 @@ namespace SimpleMvvm.View.Regions
             }
 
             return regionWrapper;
-        }
+        } 
+        #endregion
 
-        private static void OnSetRegionNameCallback(DependencyObject element, DependencyPropertyChangedEventArgs args)
-        {
-            if (!IsInDesignMode())
-            {
-                CreateRegion(element);
-            }
-        }
-
-        private static void CreateRegion(DependencyObject element)
-        {
-            IServiceLocator locator = ServiceLocator.Current;
-            DelayedRegionCreationBehavior regionCreationBehavior = locator.GetInstance<DelayedRegionCreationBehavior>();
-            regionCreationBehavior.TargetElement = element;
-            regionCreationBehavior.Attach();
-        }
-
+        #region Region Manager
         /// <summary>
         /// Identifies the RegionManager attached property.
         /// </summary>
@@ -151,8 +148,10 @@ namespace SimpleMvvm.View.Regions
                 throw new ArgumentNullException(nameof(target));
 
             target.SetValue(RegionManagerProperty, value);
-        }
+        } 
+        #endregion
 
+        #region Region Context
         /// <summary>
         /// Identifies the RegionContext attached property.
         /// </summary>
@@ -191,6 +190,15 @@ namespace SimpleMvvm.View.Regions
                 throw new ArgumentNullException(nameof(target));
 
             target.SetValue(RegionContextProperty, value);
+        } 
+        #endregion
+        
+        private static void CreateRegion(DependencyObject element)
+        {
+            IServiceLocator locator = ServiceLocator.Current;
+            DelayedRegionCreationBehavior regionCreationBehavior = locator.GetInstance<DelayedRegionCreationBehavior>();
+            regionCreationBehavior.TargetElement = element;
+            regionCreationBehavior.Attach();
         }
 
         /// <summary>
@@ -212,7 +220,6 @@ namespace SimpleMvvm.View.Regions
         /// </remarks>
         public static void UpdateRegions()
         {
-
             try
             {
                 updatingRegionsListeners.Raise(null, EventArgs.Empty);
@@ -226,26 +233,19 @@ namespace SimpleMvvm.View.Regions
             }
         }
 
-        /// <summary>
-        /// Determines whether the execution is in design mode or not 
-        /// </summary>
-        /// <returns><see langword="true"/> if in design mode</returns>
-        private static bool IsInDesignMode()
-        {
-            return Windows.ApplicationModel.DesignMode.DesignModeEnabled;
-        }
-
         #endregion
 
         private readonly RegionCollection regionCollection;
 
+        #region Ctor
         /// <summary>
         /// Initializes a new instance of <see cref="RegionManager"/>.
         /// </summary>
         public RegionManager()
         {
             regionCollection = new RegionCollection(this);
-        }
+        } 
+        #endregion
 
         /// <summary>
         /// Gets a collection of <see cref="IRegion"/> that identify each region by name. You can use this collection to add or remove regions to the current region manager.
@@ -265,6 +265,7 @@ namespace SimpleMvvm.View.Regions
             return new RegionManager();
         }
 
+        #region View Registeration
         /// <summary>
         ///     Add a view to the Views collection of a Region. Note that the region must already exist in this regionmanager.
         /// </summary>
@@ -311,8 +312,10 @@ namespace SimpleMvvm.View.Regions
             regionViewRegistry.RegisterViewWithRegion(regionName, getContentDelegate);
 
             return this;
-        }
+        } 
+        #endregion
 
+        #region Navigation Request
         /// <summary>
         /// Navigates the specified region manager.
         /// </summary>
@@ -423,7 +426,9 @@ namespace SimpleMvvm.View.Regions
         {
             RequestNavigate(regionName, new Uri(target, UriKind.RelativeOrAbsolute), nr => { }, navigationParameters);
         }
+        #endregion
 
+        #region Private Types
         private class RegionCollection : IRegionCollection
         {
             private readonly IRegionManager regionManager;
@@ -550,6 +555,7 @@ namespace SimpleMvvm.View.Regions
                     handler(this, notifyCollectionChangedEventArgs);
                 }
             }
-        }
+        } 
+        #endregion
     }
 }

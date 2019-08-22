@@ -1,8 +1,6 @@
-
-
 using System;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// EventArgs used with the NavigationFailed event.

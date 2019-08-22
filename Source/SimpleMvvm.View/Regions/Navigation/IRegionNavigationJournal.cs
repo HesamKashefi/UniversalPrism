@@ -1,4 +1,4 @@
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Provides journaling of current, back, and forward navigation within regions.

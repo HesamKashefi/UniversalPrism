@@ -1,6 +1,6 @@
 using System;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// Identifies the view in a region that is the target of a navigation request.

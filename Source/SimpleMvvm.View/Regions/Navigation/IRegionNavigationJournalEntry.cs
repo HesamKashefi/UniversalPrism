@@ -1,6 +1,6 @@
 using System;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Navigation
 {
     /// <summary>
     /// An entry in an IRegionNavigationJournal representing the URI navigated to.
