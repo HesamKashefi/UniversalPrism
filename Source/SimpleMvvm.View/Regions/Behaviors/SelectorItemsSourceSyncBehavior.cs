@@ -35,15 +35,9 @@ namespace SimpleMvvm.View.Regions.Behaviors
         /// <remarks>For this behavior, the host control must always be a <see cref="Selector"/> or an inherited class.</remarks>
         public DependencyObject HostControl
         {
-            get
-            {
-                return this.hostControl;
-            }
+            get => this.hostControl;
 
-            set
-            {
-                this.hostControl = value as Selector;
-            }
+            set => this.hostControl = value as Selector;
         }
 
         /// <summary>

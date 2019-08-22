@@ -1,8 +1,7 @@
+using SimpleMvvm.View.Regions.Behaviors;
 using System;
 using System.Globalization;
 using Windows.UI.Xaml;
-using Prism.Properties;
-using SimpleMvvm.View.Regions.Behaviors;
 
 namespace SimpleMvvm.View.Regions
 {
@@ -34,11 +33,8 @@ namespace SimpleMvvm.View.Regions
         /// <returns>The new instance of <see cref="IRegion"/> that the <paramref name="regionTarget"/> is bound to.</returns>
         public IRegion Initialize(T regionTarget, string regionName)
         {
-            if (regionName == null)
-                throw new ArgumentNullException(nameof(regionName));
-
             IRegion region = this.CreateRegion();
-            region.Name = regionName;
+            region.Name = regionName ?? throw new ArgumentNullException(nameof(regionName));
 
             SetObservableRegionOnHostingControl(region, regionTarget);
 
@@ -60,7 +56,7 @@ namespace SimpleMvvm.View.Regions
         /// <exception cref="InvalidOperationException">When <paramref name="regionTarget"/> is not of type <typeparamref name="T"/>.</exception>
         IRegion IRegionAdapter.Initialize(object regionTarget, string regionName)
         {
-            return this.Initialize(GetCastedObject(regionTarget), regionName);
+            return this.Initialize(GetCastObject(regionTarget), regionName);
         }
 
         /// <summary>
@@ -87,10 +83,10 @@ namespace SimpleMvvm.View.Regions
                     {
                         IRegionBehavior behavior = behaviorFactory.CreateFromKey(behaviorKey);
 
+                        //todo: can I move this null check up? to prevent the creation of the behavior? is it needed? is behaviorFactory singleton?
                         if (dependencyObjectRegionTarget != null)
                         {
-                            IHostAwareRegionBehavior hostAwareRegionBehavior = behavior as IHostAwareRegionBehavior;
-                            if (hostAwareRegionBehavior != null)
+                            if (behavior is IHostAwareRegionBehavior hostAwareRegionBehavior)
                             {
                                 hostAwareRegionBehavior.HostControl = dependencyObjectRegionTarget;
                             }
@@ -125,24 +121,26 @@ namespace SimpleMvvm.View.Regions
         /// <returns>A new instance of <see cref="IRegion"/>.</returns>
         protected abstract IRegion CreateRegion();
 
-        private static T GetCastedObject(object regionTarget)
+        private static T GetCastObject(object regionTarget)
         {
             if (regionTarget == null)
                 throw new ArgumentNullException(nameof(regionTarget));
 
-            T castedObject = regionTarget as T;
+            if (!(regionTarget is T castObject))
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "AdapterInvalidTypeException - {0}", typeof(T).Name));
 
-            if (castedObject == null)
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "AdapterInvalidTypeException", typeof(T).Name));
-
-            return castedObject;
+            return castObject;
         }
 
+        /// <summary>
+        /// Sets the <see cref="RegionManager.ObservableRegionProperty"/> of the <paramref name="regionTarget"/>
+        /// to be <paramref name="region"/>
+        /// </summary>
+        /// <param name="region"></param>
+        /// <param name="regionTarget"></param>
         private static void SetObservableRegionOnHostingControl(IRegion region, T regionTarget)
         {
-            DependencyObject targetElement = regionTarget as DependencyObject;
-
-            if (targetElement != null)
+            if (regionTarget is DependencyObject targetElement)
             {
                 // Set the region as a dependency property on the control hosting the region
                 // Because we are using an observable region, the hosting control can detect that the

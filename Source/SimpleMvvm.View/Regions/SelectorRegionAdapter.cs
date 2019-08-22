@@ -45,7 +45,7 @@ namespace SimpleMvvm.View.Regions
                 throw new ArgumentNullException(nameof(region));
 
             // Add the behavior that syncs the items source items with the rest of the items
-            region.Behaviors.Add(SelectorItemsSourceSyncBehavior.BehaviorKey, new SelectorItemsSourceSyncBehavior()
+            region.Behaviors.Add(SelectorItemsSourceSyncBehavior.BehaviorKey, new SelectorItemsSourceSyncBehavior
             {
                 HostControl = regionTarget
             });

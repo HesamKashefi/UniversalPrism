@@ -5,6 +5,9 @@ using SimpleMvvm.View.Common;
 
 namespace SimpleMvvm.View.Regions.Behaviors
 {
+    /// <summary>
+    /// Executes the <see cref="IDestructible.Destroy"/> method on the removed items from the <see cref="IRegion"/>
+    /// </summary>
     public class IDestructibleRegionBehavior : RegionBehavior
     {
         public const string BehaviorKey = "IDestructibleRegionBehavior";

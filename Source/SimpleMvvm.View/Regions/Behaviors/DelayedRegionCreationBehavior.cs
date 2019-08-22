@@ -29,7 +29,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         /// </summary>
         /// <param name="regionAdapterMappings">
         /// The region adapter mappings, that are used to find the correct adapter for
-        /// a given controltype. The controltype is determined by the <see name="TargetElement"/> value.
+        /// a given ControlType. The ControlType is determined by the <see name="TargetElement"/> value.
         /// </param>
         public DelayedRegionCreationBehavior(RegionAdapterMappings regionAdapterMappings)
         {
@@ -104,7 +104,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
                 if (!this.regionCreated)
                 {
                     string regionName = this.RegionManagerAccessor.GetRegionName(targetElement);
-                    CreateRegion(targetElement, regionName);
+                    CreateRegionAdapterAndInitializeIt(targetElement, regionName);
                     this.regionCreated = true;
                 }
             }
@@ -116,7 +116,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
         /// <param name="targetElement">The target element that will host the <see cref="IRegion"/>.</param>
         /// <param name="regionName">Name of the region.</param>
         /// <returns>The created <see cref="IRegion"/></returns>
-        protected virtual IRegion CreateRegion(DependencyObject targetElement, string regionName)
+        protected virtual IRegion CreateRegionAdapterAndInitializeIt(DependencyObject targetElement, string regionName)
         {
             if (targetElement == null)
                 throw new ArgumentNullException(nameof(targetElement));
@@ -143,8 +143,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
 
         private void WireUpTargetElement()
         {
-            FrameworkElement element = this.TargetElement as FrameworkElement;
-            if (element != null)
+            if (this.TargetElement is FrameworkElement element)
             {
                 element.Loaded += this.ElementLoaded;
                 return;
@@ -159,10 +158,9 @@ namespace SimpleMvvm.View.Regions.Behaviors
             //}
 
             //if the element is a dependency object, and not a FrameworkElement, nothing is holding onto the reference after the DelayedRegionCreationBehavior
-            //is instantiated inside RegionManager.CreateRegion(DependencyObject element). If the GC runs before RegionManager.UpdateRegions is called, the region will
+            //is instantiated inside RegionManager.CreateRegionAdapterAndInitializeIt(DependencyObject element). If the GC runs before RegionManager.UpdateRegions is called, the region will
             //never get registered because it is gone from the updatingRegionsListeners list inside RegionManager. So we need to hold on to it. This should be rare.
-            DependencyObject depObj = this.TargetElement as DependencyObject;
-            if (depObj != null)
+            if (this.TargetElement is DependencyObject depObj)
             {
                 Track();
                 return;
@@ -171,8 +169,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
 
         private void UnWireTargetElement()
         {
-            FrameworkElement element = this.TargetElement as FrameworkElement;
-            if (element != null)
+            if (this.TargetElement is FrameworkElement element)
             {
                 element.Loaded -= this.ElementLoaded;
                 return;
@@ -186,8 +183,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
             //    return;
             //}
 
-            DependencyObject depObj = this.TargetElement as DependencyObject;
-            if (depObj != null)
+            if (this.TargetElement is DependencyObject depObj)
             {
                 Untrack();
                 return;

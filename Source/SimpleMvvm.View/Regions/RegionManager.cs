@@ -88,9 +88,7 @@ namespace SimpleMvvm.View.Regions
         {
             if (view == null) throw new ArgumentNullException(nameof(view));
 
-            ObservableObject<IRegion> regionWrapper = view.GetValue(ObservableRegionProperty) as ObservableObject<IRegion>;
-
-            if (regionWrapper == null)
+            if (!(view.GetValue(ObservableRegionProperty) is ObservableObject<IRegion> regionWrapper))
             {
                 regionWrapper = new ObservableObject<IRegion>();
                 view.SetValue(ObservableRegionProperty, regionWrapper);
@@ -101,7 +99,7 @@ namespace SimpleMvvm.View.Regions
 
         private static void OnSetRegionNameCallback(DependencyObject element, DependencyPropertyChangedEventArgs args)
         {
-            if (!IsInDesignMode(element))
+            if (!IsInDesignMode())
             {
                 CreateRegion(element);
             }
@@ -228,7 +226,11 @@ namespace SimpleMvvm.View.Regions
             }
         }
 
-        private static bool IsInDesignMode(DependencyObject element)
+        /// <summary>
+        /// Determines whether the execution is in design mode or not 
+        /// </summary>
+        /// <returns><see langword="true"/> if in design mode</returns>
+        private static bool IsInDesignMode()
         {
             return Windows.ApplicationModel.DesignMode.DesignModeEnabled;
         }
@@ -517,7 +519,7 @@ namespace SimpleMvvm.View.Regions
             /// Adds a region to the regionmanager with the name received as argument.
             /// </summary>
             /// <param name="regionName">The name to be given to the region.</param>
-            /// <param name="region">The region to be added to the regionmanager.</param>
+            /// <param name="region">The region to be added to the RegionManager.</param>
             /// <exception cref="ArgumentNullException">Thrown if <paramref name="region"/> is <see langword="null"/>.</exception>
             /// <exception cref="ArgumentException">Thrown if <paramref name="regionName"/> and <paramref name="region"/>'s name do not match and the <paramref name="region"/> <see cref="IRegion.Name"/> is not <see langword="null"/>.</exception>
             public void Add(string regionName, IRegion region)
