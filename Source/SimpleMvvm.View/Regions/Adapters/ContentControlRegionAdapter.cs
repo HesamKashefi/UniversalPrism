@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Adapters
 {
     /// <summary>
     /// Adapter that creates a new <see cref="SingleActiveRegion"/> and monitors its

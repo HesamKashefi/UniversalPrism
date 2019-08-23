@@ -1,9 +1,9 @@
-using SimpleMvvm.View.Regions.Behaviors;
 using System;
 using System.Globalization;
 using Windows.UI.Xaml;
+using SimpleMvvm.View.Regions.Behaviors;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Adapters
 {
     /// <summary>
     /// Base class to facilitate the creation of <see cref="IRegionAdapter"/> implementations.

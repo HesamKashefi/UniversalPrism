@@ -2,7 +2,7 @@ using System;
 using Windows.UI.Xaml.Controls.Primitives;
 using SimpleMvvm.View.Regions.Behaviors;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Adapters
 {
     /// <summary>
     /// Adapter that creates a new <see cref="Region"/> and binds all

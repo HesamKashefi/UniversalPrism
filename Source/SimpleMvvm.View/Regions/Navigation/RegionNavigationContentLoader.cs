@@ -98,8 +98,7 @@ namespace SimpleMvvm.View.Regions.Navigation
             catch (ActivationException e)
             {
                 throw new InvalidOperationException(
-                    string.Format(CultureInfo.CurrentCulture, "CannotCreateNavigationTarget", candidateTargetContract),
-                    e);
+                    string.Format(CultureInfo.CurrentCulture, "CannotCreateNavigationTarget - {0}", candidateTargetContract), e);
             }
             return newRegionItem;
         }

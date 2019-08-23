@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Adapters
 {
     /// <summary>
     /// This class maps <see cref="Type"/> with <see cref="IRegionAdapter"/>.

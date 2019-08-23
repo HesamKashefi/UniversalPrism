@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Windows.UI.Xaml;
+using SimpleMvvm.View.Regions.Adapters;
 
 namespace SimpleMvvm.View.Regions.Behaviors
 {

@@ -131,6 +131,7 @@
     <Compile Include="Delegate\WeakDelegatesManager.cs" />
     <Compile Include="IFrameFacade.cs" />
     <Compile Include="IResumeArgs.cs" />
+    <Compile Include="Mvvm\ViewModelLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions\AllActiveRegion.cs" />
     <Compile Include="Regions\Behaviors\AutoPopulateRegionBehavior.cs" />
@@ -146,14 +147,14 @@
     <Compile Include="Regions\Behaviors\RegionMemberLifetimeBehavior.cs" />
     <Compile Include="Regions\Behaviors\SelectorItemsSourceSyncBehavior.cs" />
     <Compile Include="Regions\Behaviors\SyncRegionContextWithHostBehavior.cs" />
-    <Compile Include="Regions\ContentControlRegionAdapter.cs" />
+    <Compile Include="Regions\Adapters\ContentControlRegionAdapter.cs" />
     <Compile Include="Regions\DefaultRegionManagerAccessor.cs" />
     <Compile Include="Regions\Navigation\IConfirmNavigationRequest.cs" />
     <Compile Include="Regions\Navigation\IJournalAware.cs" />
     <Compile Include="Regions\Navigation\INavigateAsync.cs" />
     <Compile Include="Regions\Navigation\INavigationAware.cs" />
     <Compile Include="Regions\IRegion.cs" />
-    <Compile Include="Regions\IRegionAdapter.cs" />
+    <Compile Include="Regions\Adapters\IRegionAdapter.cs" />
     <Compile Include="Regions\IRegionBehavior.cs" />
     <Compile Include="Regions\IRegionBehaviorCollection.cs" />
     <Compile Include="Regions\IRegionBehaviorFactory.cs" />
@@ -167,7 +168,7 @@
     <Compile Include="Regions\Navigation\IRegionNavigationService.cs" />
     <Compile Include="Regions\IRegionViewRegistry.cs" />
     <Compile Include="Regions\ItemMetadata.cs" />
-    <Compile Include="Regions\ItemsControlRegionAdapter.cs" />
+    <Compile Include="Regions\Adapters\ItemsControlRegionAdapter.cs" />
     <Compile Include="Regions\IViewsCollection.cs" />
     <Compile Include="Regions\Navigation\NavigationAsyncExtensions.cs" />
     <Compile Include="Regions\Navigation\NavigationContext.cs" />
@@ -175,8 +176,8 @@
     <Compile Include="Regions\Navigation\NavigationResult.cs" />
     <Compile Include="Regions\ObservableObject.cs" />
     <Compile Include="Regions\Region.cs" />
-    <Compile Include="Regions\RegionAdapterBase.cs" />
-    <Compile Include="Regions\RegionAdapterMappings.cs" />
+    <Compile Include="Regions\Adapters\RegionAdapterBase.cs" />
+    <Compile Include="Regions\Adapters\RegionAdapterMappings.cs" />
     <Compile Include="Regions\RegionBehavior.cs" />
     <Compile Include="Regions\RegionBehaviorCollection.cs" />
     <Compile Include="Regions\RegionBehaviorFactory.cs" />
@@ -190,7 +191,7 @@
     <Compile Include="Regions\Navigation\RegionNavigationJournalEntry.cs" />
     <Compile Include="Regions\Navigation\RegionNavigationService.cs" />
     <Compile Include="Regions\RegionViewRegistry.cs" />
-    <Compile Include="Regions\SelectorRegionAdapter.cs" />
+    <Compile Include="Regions\Adapters\SelectorRegionAdapter.cs" />
     <Compile Include="Regions\SingleActiveRegion.cs" />
     <Compile Include="Regions\SyncActiveStateAttribute.cs" />
     <Compile Include="Regions\UpdateRegionsException.cs" />

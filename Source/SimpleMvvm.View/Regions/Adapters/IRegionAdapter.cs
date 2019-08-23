@@ -1,4 +1,4 @@
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Adapters
 {
     /// <summary>
     /// Defines an interfaces to adapt an object and bind it to a new <see cref="IRegion"/>.

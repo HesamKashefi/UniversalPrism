@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 
-namespace SimpleMvvm.Core
+namespace SimpleMvvm.Core.Mvvm
 {
     /// <summary>
     /// The ViewModelLocationProvider class locates the view model for the view that has the AutoWireViewModelChanged attached property set to true.
@@ -20,12 +20,12 @@ namespace SimpleMvvm.Core
         /// <summary>
         /// A dictionary that contains all the registered factories for the views.
         /// </summary>
-        static readonly Dictionary<string, Func<object>> Factories = new Dictionary<string, Func<object>>();
+        static Dictionary<string, Func<object>> _factories = new Dictionary<string, Func<object>>();
 
         /// <summary>
         /// A dictionary that contains all the registered ViewModel types for the views.
         /// </summary>
-        static readonly Dictionary<string, Type> TypeFactories = new Dictionary<string, Type>();
+        static Dictionary<string, Type> _typeFactories = new Dictionary<string, Type>();
 
         /// <summary>
         /// The default view model factory which provides the ViewModel type as a parameter.
@@ -33,7 +33,7 @@ namespace SimpleMvvm.Core
         static Func<Type, object> _defaultViewModelFactory = Activator.CreateInstance;
 
         /// <summary>
-        /// ViewModelfactory that provides the View instance and ViewModel type as parameters.
+        /// ViewModelFactory that provides the View instance and ViewModel type as parameters.
         /// </summary>
         static Func<object, Type, object> _defaultViewModelFactoryWithViewParameter;
 
@@ -43,16 +43,12 @@ namespace SimpleMvvm.Core
         static Func<Type, Type> _defaultViewTypeToViewModelTypeResolver =
             viewType =>
             {
-                var viewName = viewType.FullName;
-                if (viewName == null) throw new ArgumentNullException(nameof(viewName));
-
+                var viewName = viewType.FullName ?? throw new ArgumentNullException(nameof(viewType.FullName));
                 viewName = viewName.Replace(".Views.", ".ViewModels.");
                 var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
                 var suffix = viewName.EndsWith("View") ? "Model" : "ViewModel";
-                var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}{1}, {2}", viewName, suffix,
-                    viewAssemblyName);
+                var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}{1}, {2}", viewName, suffix, viewAssemblyName);
                 return Type.GetType(viewModelName);
-
             };
 
         /// <summary>
@@ -123,8 +119,8 @@ namespace SimpleMvvm.Core
             var viewKey = view.GetType().ToString();
 
             // Mapping of view models base on view type (or instance) goes here
-            if (Factories.ContainsKey(viewKey))
-                return Factories[viewKey]();
+            if (_factories.ContainsKey(viewKey))
+                return _factories[viewKey]();
 
             return null;
         }
@@ -138,12 +134,13 @@ namespace SimpleMvvm.Core
         {
             var viewKey = view.ToString();
 
-            if (TypeFactories.ContainsKey(viewKey))
-                return TypeFactories[viewKey];
+            if (_typeFactories.ContainsKey(viewKey))
+                return _typeFactories[viewKey];
 
             return null;
         }
 
+        #region ViewModel Type Registration
         /// <summary>
         /// Registers the ViewModel factory for the specified view type.
         /// </summary>
@@ -161,18 +158,18 @@ namespace SimpleMvvm.Core
         /// <param name="factory">The ViewModel factory.</param>
         public static void Register(string viewTypeName, Func<object> factory)
         {
-            Factories[viewTypeName] = factory;
+            _factories[viewTypeName] = factory;
         }
 
         /// <summary>
         /// Registers a ViewModel type for the specified view type.
         /// </summary>
         /// <typeparam name="T">The View</typeparam>
-        /// <typeparam name="TVm">The ViewModel</typeparam>
-        public static void Register<T, TVm>()
+        /// <typeparam name="VM">The ViewModel</typeparam>
+        public static void Register<T, VM>()
         {
             var viewType = typeof(T);
-            var viewModelType = typeof(TVm);
+            var viewModelType = typeof(VM);
 
             Register(viewType.ToString(), viewModelType);
         }
@@ -184,7 +181,8 @@ namespace SimpleMvvm.Core
         /// <param name="viewModelType">The ViewModel type</param>
         public static void Register(string viewTypeName, Type viewModelType)
         {
-            TypeFactories[viewTypeName] = viewModelType;
-        }
+            _typeFactories[viewTypeName] = viewModelType;
+        } 
+        #endregion
     }
 }

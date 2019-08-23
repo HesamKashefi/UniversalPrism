@@ -1,7 +1,7 @@
 using System;
 using Windows.UI.Xaml.Controls;
 
-namespace SimpleMvvm.View.Regions
+namespace SimpleMvvm.View.Regions.Adapters
 {
     /// <summary>
     /// Adapter that creates a new <see cref="AllActiveRegion"/> and binds all

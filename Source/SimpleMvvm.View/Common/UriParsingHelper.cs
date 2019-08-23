@@ -1,5 +1,4 @@
 using System;
-using SimpleMvvm.View.Regions;
 using SimpleMvvm.View.Regions.Navigation;
 
 namespace SimpleMvvm.View.Common

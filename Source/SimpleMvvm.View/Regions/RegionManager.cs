@@ -11,6 +11,7 @@ using System.Threading;
 using Windows.UI.Xaml;
 using SimpleMvvm.View.Common;
 using SimpleMvvm.View.Delegate;
+using SimpleMvvm.View.Regions.Adapters;
 using SimpleMvvm.View.Regions.Navigation;
 
 namespace SimpleMvvm.View.Regions

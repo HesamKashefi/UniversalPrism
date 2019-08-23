@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleMvvm.Core.Mvvm;
+using System;
 
 namespace SimpleMvvm.Core.Container
 {

@@ -1,70 +1,70 @@
-﻿using Prism.Events;
-using Prism.Logging;
-using SimpleMvvm.Core;
-using SimpleMvvm.Core.Container;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Prism.Events;
+using Prism.Logging;
+using SimpleMvvm.Core;
+using SimpleMvvm.Core.Container;
+using SimpleMvvm.Core.Mvvm;
 
 namespace SimpleMvvm.View
 {
     public abstract partial class ApplicationTemplate : IApplicationBase
     {
-        public new static ApplicationTemplate Current => (ApplicationTemplate)Application.Current;
         private static readonly SemaphoreSlim StartSemaphore = new SemaphoreSlim(1, 1);
+
+        private static int _initialized;
         private readonly bool _logStartingEvents = false;
+
+        private IContainerExtension containerExtension;
+        private ILoggerFacade logger;
 
         public ApplicationTemplate()
         {
             InternalInitialize();
             Resuming += async (s, e) =>
             {
-                await InternalStartAsync(new StartArgs(ResumeArgs.Create(ApplicationExecutionState.Suspended), StartKinds.Resume));
+                await InternalStartAsync(new StartArgs(ResumeArgs.Create(ApplicationExecutionState.Suspended),
+                    StartKinds.Resume));
             };
         }
 
-        private IContainerExtension _containerExtension;
-        public IContainerProvider Container => _containerExtension;
+        public new static ApplicationTemplate Current => (ApplicationTemplate) Application.Current;
+        public IContainerProvider Container => containerExtension;
 
         private void InternalInitialize()
         {
             if (_logStartingEvents)
-            {
-                _logger.Log($"{nameof(ApplicationTemplate)}.{nameof(InternalInitialize)}", Category.Info, Priority.None);
-            }
+                logger.Log($"{nameof(ApplicationTemplate)}.{nameof(InternalInitialize)}", Category.Info, Priority.None);
 
-            _containerExtension = CreateContainerExtension();
-            if (_containerExtension is IContainerRegistry registry)
+            containerExtension = CreateContainerExtension();
+            if (containerExtension is IContainerRegistry registry)
             {
                 registry.RegisterSingleton<ILoggerFacade, DebugLogger>();
                 registry.RegisterSingleton<IEventAggregator, EventAggregator>();
                 RegisterInternalTypes(registry);
             }
 
-            RegisterTypes(_containerExtension as IContainerRegistry);
+            RegisterTypes(containerExtension);
 
-            _containerExtension.FinalizeExtension();
+            containerExtension.FinalizeExtension();
 
-            _logger = Container.Resolve<ILoggerFacade>();
+            logger = Container.Resolve<ILoggerFacade>();
 
             ConfigureViewModelLocator();
         }
 
-        private static int _initialized = 0;
-        private ILoggerFacade _logger;
-
         private void CallOnInitializedOnce()
         {
             if (_logStartingEvents)
-            {
-                _logger.Log($"{nameof(ApplicationTemplate)}.{nameof(CallOnInitializedOnce)}", Category.Info, Priority.None);
-            }
+                logger.Log($"{nameof(ApplicationTemplate)}.{nameof(CallOnInitializedOnce)}", Category.Info,
+                    Priority.None);
 
             if (Interlocked.Increment(ref _initialized) == 1)
             {
-                _logger.Log("[App.OnInitialize()]", Category.Info, Priority.None);
+                logger.Log("[App.OnInitialize()]", Category.Info, Priority.None);
                 OnInitialized();
             }
         }
@@ -73,9 +73,8 @@ namespace SimpleMvvm.View
         {
             await StartSemaphore.WaitAsync();
             if (_logStartingEvents)
-            {
-                _logger.Log($"{nameof(ApplicationTemplate)}.{nameof(InternalStartAsync)}({startArgs})", Category.Info, Priority.None);
-            }
+                logger.Log($"{nameof(ApplicationTemplate)}.{nameof(InternalStartAsync)}({startArgs})", Category.Info,
+                    Priority.None);
 
             try
             {
@@ -95,9 +94,15 @@ namespace SimpleMvvm.View
 
         public abstract void RegisterTypes(IContainerRegistry container);
 
-        public virtual void OnInitialized() { /* empty */ }
+        public virtual void OnInitialized()
+        {
+            /* empty */
+        }
 
-        public virtual void OnStart(IStartArgs args) {  /* empty */ }
+        public virtual void OnStart(IStartArgs args)
+        {
+            /* empty */
+        }
 
         public virtual Task OnStartAsync(IStartArgs args)
         {
@@ -106,7 +111,8 @@ namespace SimpleMvvm.View
 
         public virtual void ConfigureViewModelLocator()
         {
-            ViewModelLocationProvider.SetDefaultViewModelFactory((view, type) => _containerExtension.ResolveViewModelForView(view, type));
+            ViewModelLocationProvider.SetDefaultViewModelFactory((view, type) =>
+                containerExtension.ResolveViewModelForView(view, type));
         }
 
         public abstract IContainerExtension CreateContainerExtension();
