@@ -140,8 +140,7 @@ namespace SimpleMvvm.View.Regions.Navigation
         {
             if (currentViewIndex < activeViews.Length)
             {
-                var vetoingView = activeViews[currentViewIndex] as IConfirmNavigationRequest;
-                if (vetoingView != null)
+                if (activeViews[currentViewIndex] is IConfirmNavigationRequest vetoingView)
                 {
                     // the current active view implements IConfirmNavigationRequest, request confirmation
                     // providing a callback to resume the navigation request
@@ -184,13 +183,9 @@ namespace SimpleMvvm.View.Regions.Navigation
             object[] activeViews,
             int currentViewIndex)
         {
-            var frameworkElement = activeViews[currentViewIndex] as FrameworkElement;
-
-            if (frameworkElement != null)
+            if (activeViews[currentViewIndex] is FrameworkElement frameworkElement)
             {
-                var vetoingViewModel = frameworkElement.DataContext as IConfirmNavigationRequest;
-
-                if (vetoingViewModel != null)
+                if (frameworkElement.DataContext is IConfirmNavigationRequest vetoingViewModel)
                 {
                     // the data model for the current active view implements IConfirmNavigationRequest, request confirmation
                     // providing a callback to resume the navigation request
@@ -232,12 +227,12 @@ namespace SimpleMvvm.View.Regions.Navigation
 
                 object view = this.regionNavigationContentLoader.LoadContent(this.Region, navigationContext);
 
-                // Raise the navigating event just before activing the view.
+                // Raise the navigating event just before activating the view.
                 this.RaiseNavigating(navigationContext);
 
                 this.Region.Activate(view);
 
-                // Update the navigation journal before notifying others of navigaton
+                // Update the navigation journal before notifying others of navigation
                 IRegionNavigationJournalEntry journalEntry = this.serviceLocator.GetInstance<IRegionNavigationJournalEntry>();
                 journalEntry.Uri = navigationContext.Uri;
                 journalEntry.Parameters = navigationContext.Parameters;

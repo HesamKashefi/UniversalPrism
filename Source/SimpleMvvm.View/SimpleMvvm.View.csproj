@@ -120,8 +120,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApplicationTemplate.cs" />
-    <Compile Include="ApplicationTemplate.Xaml.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
     <Compile Include="Common\MvvmHelpers.cs" />
     <Compile Include="Common\ObservableObject.cs" />
@@ -130,8 +128,9 @@
     <Compile Include="Delegate\IDelegateReference.cs" />
     <Compile Include="Delegate\WeakDelegatesManager.cs" />
     <Compile Include="IFrameFacade.cs" />
-    <Compile Include="IResumeArgs.cs" />
     <Compile Include="Mvvm\ViewModelLocator.cs" />
+    <Compile Include="ApplicationBase.cs" />
+    <Compile Include="ApplicationBase.Overrides.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions\AllActiveRegion.cs" />
     <Compile Include="Regions\Behaviors\AutoPopulateRegionBehavior.cs" />
@@ -201,7 +200,6 @@
     <Compile Include="Regions\ViewRegistrationException.Desktop.cs" />
     <Compile Include="Regions\ViewsCollection.cs" />
     <Compile Include="Regions\ViewSortHintAttribute.cs" />
-    <Compile Include="ResumeArgs.cs" />
     <Compile Include="StartArgs.cs" />
     <EmbeddedResource Include="Properties\SimpleMvvm.View.rd.xml" />
   </ItemGroup>

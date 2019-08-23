@@ -4,7 +4,7 @@ using SimpleMvvm.Core;
 
 namespace SimpleMvvm.View
 {
-    public abstract partial class ApplicationTemplate : Application
+    public partial class ApplicationBase
     {
         protected sealed override async void OnActivated(IActivatedEventArgs e) =>
             await InternalStartAsync(new StartArgs(e, StartKinds.Activate));

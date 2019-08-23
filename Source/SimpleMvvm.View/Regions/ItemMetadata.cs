@@ -42,8 +42,8 @@ namespace SimpleMvvm.View.Regions
         /// <value>The name of the wrapped item.</value>
         public string Name
         {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
+            get => (string)GetValue(NameProperty);
+            set => SetValue(NameProperty, value);
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace SimpleMvvm.View.Regions
         /// <value><see langword="true" /> if the item should be considered active; otherwise <see langword="false" />.</value>
         public bool IsActive
         {
-            get { return (bool)GetValue(IsActiveProperty); }
-            set { SetValue(IsActiveProperty, value); }
+            get => (bool)GetValue(IsActiveProperty);
+            set => SetValue(IsActiveProperty, value);
         }
 
         /// <summary>
@@ -67,16 +67,13 @@ namespace SimpleMvvm.View.Regions
         public void InvokeMetadataChanged()
         {
             EventHandler metadataChangedHandler = MetadataChanged;
-            if (metadataChangedHandler != null) metadataChangedHandler(this, EventArgs.Empty);
+            metadataChangedHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private static void DependencyPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
         {
             ItemMetadata itemMetadata = dependencyObject as ItemMetadata;
-            if (itemMetadata != null)
-            {
-                itemMetadata.InvokeMetadataChanged();
-            }
+            itemMetadata?.InvokeMetadataChanged();
         }
     }
 }

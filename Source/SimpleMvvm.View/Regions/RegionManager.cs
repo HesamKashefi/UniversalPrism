@@ -230,7 +230,7 @@ namespace SimpleMvvm.View.Regions
                 Exception rootException = ex.GetRootException();
 
                 throw new UpdateRegionsException(string.Format(CultureInfo.CurrentCulture,
-                    "UpdateRegionException", rootException), ex.InnerException);
+                    "UpdateRegionException - {0}", rootException), ex.InnerException);
             }
         }
 
