@@ -9,8 +9,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Windows.UI.Xaml;
+using SimpleMvvm.Core.Delegate;
 using SimpleMvvm.View.Common;
-using SimpleMvvm.View.Delegate;
 using SimpleMvvm.View.Regions.Adapters;
 using SimpleMvvm.View.Regions.Navigation;
 
@@ -26,7 +26,7 @@ namespace SimpleMvvm.View.Regions
     {
         #region Static members (for XAML support)
 
-        private static readonly WeakDelegatesManager updatingRegionsListeners = new WeakDelegatesManager();
+        private static readonly WeakDelegatesManager UpdatingRegionsListeners = new WeakDelegatesManager();
 
         #region Region Name
         /// <summary>
@@ -203,18 +203,18 @@ namespace SimpleMvvm.View.Regions
         }
 
         /// <summary>
-        /// Notification used by attached behaviors to update the region managers appropriatelly if needed to.
+        /// Notification used by attached behaviors to update the region managers appropriately if needed to.
         /// </summary>
         /// <remarks>This event uses weak references to the event handler to prevent this static event of keeping the
         /// target element longer than expected.</remarks>
         public static event EventHandler UpdatingRegions
         {
-            add => updatingRegionsListeners.AddListener(value);
-            remove => updatingRegionsListeners.RemoveListener(value);
+            add => UpdatingRegionsListeners.AddListener(value);
+            remove => UpdatingRegionsListeners.RemoveListener(value);
         }
 
         /// <summary>
-        /// Notifies attached behaviors to update the region managers appropriatelly if needed to.
+        /// Notifies attached behaviors to update the region managers appropriately if needed to.
         /// </summary>
         /// <remarks>
         /// This method is normally called internally, and there is usually no need to call this from user code.
@@ -223,7 +223,7 @@ namespace SimpleMvvm.View.Regions
         {
             try
             {
-                updatingRegionsListeners.Raise(null, EventArgs.Empty);
+                UpdatingRegionsListeners.Raise(null, EventArgs.Empty);
             }
             catch (TargetInvocationException ex)
             {
@@ -252,10 +252,7 @@ namespace SimpleMvvm.View.Regions
         /// Gets a collection of <see cref="IRegion"/> that identify each region by name. You can use this collection to add or remove regions to the current region manager.
         /// </summary>
         /// <value>A <see cref="IRegionCollection"/> with all the registered regions.</value>
-        public IRegionCollection Regions
-        {
-            get { return regionCollection; }
-        }
+        public IRegionCollection Regions => regionCollection;
 
         /// <summary>
         /// Creates a new region manager.
@@ -268,7 +265,7 @@ namespace SimpleMvvm.View.Regions
 
         #region View Registeration
         /// <summary>
-        ///     Add a view to the Views collection of a Region. Note that the region must already exist in this regionmanager.
+        ///     Add a view to the Views collection of a Region. Note that the region must already exist in this RegionManager.
         /// </summary>
         /// <param name="regionName">The name of the region to add a view to</param>
         /// <param name="view">The view to add to the views collection</param>
@@ -276,7 +273,7 @@ namespace SimpleMvvm.View.Regions
         public IRegionManager AddToRegion(string regionName, object view)
         {
             if (!Regions.ContainsRegionWithName(regionName))
-                throw new ArgumentException(string.Format(Thread.CurrentThread.CurrentCulture, "RegionNotFound", regionName), nameof(regionName));
+                throw new ArgumentException(string.Format(Thread.CurrentThread.CurrentCulture, "RegionNotFound - {0}", regionName), nameof(regionName));
 
             return Regions[regionName].Add(view);
         }
@@ -305,7 +302,7 @@ namespace SimpleMvvm.View.Regions
         /// </summary>
         /// <param name="regionName">The name of the region to associate the view with.</param>
         /// <param name="getContentDelegate">The delegate used to resolve a concrete instance of the view.</param>
-        /// <returns>The regionmanager, for adding several views easily</returns>
+        /// <returns>The RegionManager, for adding several views easily</returns>
         public IRegionManager RegisterViewWithRegion(string regionName, Func<object> getContentDelegate)
         {
             var regionViewRegistry = ServiceLocator.Current.GetInstance<IRegionViewRegistry>();
@@ -464,7 +461,7 @@ namespace SimpleMvvm.View.Regions
                     IRegion region = GetRegionByName(regionName);
                     if (region == null)
                     {
-                        throw new KeyNotFoundException(string.Format(CultureInfo.CurrentUICulture, "RegionNotInRegionManagerException", regionName));
+                        throw new KeyNotFoundException(string.Format(CultureInfo.CurrentUICulture, "RegionNotInRegionManagerException - {0}", regionName));
                     }
 
                     return region;
@@ -486,7 +483,7 @@ namespace SimpleMvvm.View.Regions
                 if (this.GetRegionByName(region.Name) != null)
                 {
                     throw new ArgumentException(string.Format(CultureInfo.InvariantCulture,
-                                                              "RegionNameExistsException", region.Name));
+                                                              "RegionNameExistsException - {0}", region.Name));
                 }
 
                 this.regions.Add(region);
@@ -522,7 +519,7 @@ namespace SimpleMvvm.View.Regions
             }
 
             /// <summary>
-            /// Adds a region to the regionmanager with the name received as argument.
+            /// Adds a region to the RegionManager with the name received as argument.
             /// </summary>
             /// <param name="regionName">The name to be given to the region.</param>
             /// <param name="region">The region to be added to the RegionManager.</param>
@@ -534,7 +531,7 @@ namespace SimpleMvvm.View.Regions
                     throw new ArgumentNullException(nameof(region));
 
                 if (region.Name != null && region.Name != regionName)
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "RegionManagerWithDifferentNameException", region.Name, regionName), nameof(regionName));
+                    throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "RegionManagerWithDifferentNameException - {0} - {1}", region.Name, regionName), nameof(regionName));
 
                 if (region.Name == null)
                     region.Name = regionName;
@@ -551,10 +548,7 @@ namespace SimpleMvvm.View.Regions
             {
                 var handler = this.CollectionChanged;
 
-                if (handler != null)
-                {
-                    handler(this, notifyCollectionChangedEventArgs);
-                }
+                handler?.Invoke(this, notifyCollectionChangedEventArgs);
             }
         } 
         #endregion

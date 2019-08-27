@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 
-namespace SimpleMvvm.View.Delegate
+namespace SimpleMvvm.Core.Delegate
 {
     /// <summary>
-    /// Represents a reference to a <see cref="SimpleMvvm.View.Delegate"/> that may contain a
+    /// Represents a reference to a <see cref="SimpleMvvm.Core.Delegate"/> that may contain a
     /// <see cref="WeakReference"/> to the target. This class is used
     /// internally by the Prism Library.
     /// </summary>
@@ -18,13 +18,13 @@ namespace SimpleMvvm.View.Delegate
         /// <summary>
         /// Initializes a new instance of <see cref="DelegateReference"/>.
         /// </summary>
-        /// <param name="delegate">The original <see cref="SimpleMvvm.View.Delegate"/> to create a reference for.</param>
+        /// <param name="delegate">The original <see cref="SimpleMvvm.Core.Delegate"/> to create a reference for.</param>
         /// <param name="keepReferenceAlive">If <see langword="false" /> the class will create a weak reference to the delegate, allowing it to be garbage collected. Otherwise it will keep a strong reference to the target.</param>
-        /// <exception cref="ArgumentNullException">If the passed <paramref name="delegate"/> is not assignable to <see cref="SimpleMvvm.View.Delegate"/>.</exception>
+        /// <exception cref="ArgumentNullException">If the passed <paramref name="delegate"/> is not assignable to <see cref="SimpleMvvm.Core.Delegate"/>.</exception>
         public DelegateReference(System.Delegate @delegate, bool keepReferenceAlive)
         {
             if (@delegate == null)
-                throw new ArgumentNullException("delegate");
+                throw new ArgumentNullException(nameof(@delegate));
 
             if (keepReferenceAlive)
             {
@@ -39,9 +39,9 @@ namespace SimpleMvvm.View.Delegate
         }
 
         /// <summary>
-        /// Gets the <see cref="SimpleMvvm.View.Delegate" /> (the target) referenced by the current <see cref="DelegateReference"/> object.
+        /// Gets the <see cref="SimpleMvvm.Core.Delegate" /> (the target) referenced by the current <see cref="DelegateReference"/> object.
         /// </summary>
-        /// <value><see langword="null"/> if the object referenced by the current <see cref="DelegateReference"/> object has been garbage collected; otherwise, a reference to the <see cref="SimpleMvvm.View.Delegate"/> referenced by the current <see cref="DelegateReference"/> object.</value>
+        /// <value><see langword="null"/> if the object referenced by the current <see cref="DelegateReference"/> object has been garbage collected; otherwise, a reference to the <see cref="SimpleMvvm.Core.Delegate"/> referenced by the current <see cref="DelegateReference"/> object.</value>
         public System.Delegate Target
         {
             get
@@ -58,7 +58,7 @@ namespace SimpleMvvm.View.Delegate
         }
 
         /// <summary>
-        /// Checks if the <see cref="SimpleMvvm.View.Delegate" /> (the target) referenced by the current <see cref="DelegateReference"/> object are equal to another <see cref="SimpleMvvm.View.Delegate" />.
+        /// Checks if the <see cref="SimpleMvvm.Core.Delegate" /> (the target) referenced by the current <see cref="DelegateReference"/> object are equal to another <see cref="SimpleMvvm.Core.Delegate" />.
         /// This is equivalent with comparing <see cref="Target"/> with <paramref name="delegate"/>, only more efficient.
         /// </summary>
         /// <param name="delegate">The other delegate to compare with.</param>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SimpleMvvm.View.Delegate
+﻿namespace SimpleMvvm.Core.Delegate
 {
     /// <summary>
     /// Represents a reference to a <see cref="Delegate"/>.

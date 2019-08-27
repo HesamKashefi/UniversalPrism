@@ -1,11 +1,11 @@
 using CommonServiceLocator;
 using Prism.Common;
+using SimpleMvvm.Core.Delegate;
+using SimpleMvvm.View.Common;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using SimpleMvvm.View.Common;
-using SimpleMvvm.View.Delegate;
 
 namespace SimpleMvvm.View.Regions
 {

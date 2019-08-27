@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SimpleMvvm.View.Delegate
+namespace SimpleMvvm.Core.Delegate
 {
-    internal class WeakDelegatesManager
+    public class WeakDelegatesManager
     {
         private readonly List<DelegateReference> listeners = new List<DelegateReference>();
 
