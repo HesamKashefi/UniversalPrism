@@ -26,7 +26,6 @@ namespace SimpleMvvm.View
     {
         private static readonly SemaphoreSlim StartSemaphore = new SemaphoreSlim(1, 1);
         IContainerExtension containerExtension;
-        private DependencyObject shell;
 
         public ApplicationBase()
         {
@@ -189,7 +188,6 @@ namespace SimpleMvvm.View
         /// </summary>
         protected virtual void InitializeShell(DependencyObject shellObj)
         {
-            this.shell = shellObj;
         }
 
         /// <summary>
