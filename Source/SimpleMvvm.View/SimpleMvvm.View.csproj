@@ -126,6 +126,11 @@
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\UriParsingHelper.cs" />
     <Compile Include="IFrameFacade.cs" />
+    <Compile Include="Logging\Category.cs" />
+    <Compile Include="Logging\ILoggerFacade.cs" />
+    <Compile Include="Logging\Priority.cs" />
+    <Compile Include="Logging\TextLogger.cs" />
+    <Compile Include="Logging\TraceLogger.cs" />
     <Compile Include="Mvvm\ViewModelLocator.cs" />
     <Compile Include="ApplicationBase.cs" />
     <Compile Include="ApplicationBase.Overrides.cs" />
@@ -207,9 +212,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
-    </PackageReference>
-    <PackageReference Include="Prism.Core">
-      <Version>7.2.0.1367</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

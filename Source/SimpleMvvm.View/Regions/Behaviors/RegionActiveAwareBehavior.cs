@@ -1,9 +1,9 @@
+using SimpleMvvm.Core;
+using SimpleMvvm.View.Common;
 using System;
 using System.Collections.Specialized;
 using System.Linq;
 using Windows.UI.Xaml;
-using Prism;
-using SimpleMvvm.View.Common;
 
 namespace SimpleMvvm.View.Regions.Behaviors
 {
@@ -52,7 +52,7 @@ namespace SimpleMvvm.View.Regions.Behaviors
                 collection.CollectionChanged -= OnCollectionChanged;
             }
         }
-        
+
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)

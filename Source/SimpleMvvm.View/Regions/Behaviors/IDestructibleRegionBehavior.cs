@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Specialized;
-using Prism.Navigation;
+﻿using SimpleMvvm.Core;
 using SimpleMvvm.View.Common;
+using System;
+using System.Collections.Specialized;
 
 namespace SimpleMvvm.View.Regions.Behaviors
 {

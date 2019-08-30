@@ -1,5 +1,5 @@
 using CommonServiceLocator;
-using Prism.Common;
+using SimpleMvvm.Core.Common;
 using SimpleMvvm.Core.Delegate;
 using SimpleMvvm.View.Common;
 using System;
@@ -102,7 +102,7 @@ namespace SimpleMvvm.View.Regions
                 }
 
                 throw new ViewRegistrationException(string.Format(CultureInfo.CurrentCulture,
-                    "OnViewRegisteredException", e.RegionName, rootException), ex.InnerException);
+                    "OnViewRegisteredException - {0} - {1}", e.RegionName, rootException), ex.InnerException);
             }
         }
     }

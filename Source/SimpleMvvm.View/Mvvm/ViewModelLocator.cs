@@ -4,7 +4,7 @@ using SimpleMvvm.Core.Mvvm;
 namespace SimpleMvvm.View.Mvvm
 {
     /// <summary>
-    /// This class defines the attached property and related change handler that calls the ViewModelLocator in Prism.Mvvm.
+    /// This class defines the attached property and related change handler that calls the ViewModelLocator in SimpleMvvm.Mvvm.
     /// </summary>
     public static class ViewModelLocator
     {

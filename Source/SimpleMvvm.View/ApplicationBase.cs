@@ -1,5 +1,5 @@
 ﻿using CommonServiceLocator;
-using Prism.Events;
+//using Prism.Events;
 using SimpleMvvm.Core.Container;
 using SimpleMvvm.Core.Mvvm;
 using SimpleMvvm.View.Common;
@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using SimpleMvvm.View.Logging;
 
 namespace SimpleMvvm.View
 {
@@ -62,7 +63,7 @@ namespace SimpleMvvm.View
         }
 
         /// <summary>
-        /// Configures the <see cref="SimpleMvvm.View.Mvvm.ViewModelLocator"/> used by Prism.
+        /// Configures the <see cref="SimpleMvvm.View.Mvvm.ViewModelLocator"/> used by SimpleMvvm.
         /// </summary>
         protected virtual void ConfigureViewModelLocator()
         {
@@ -70,7 +71,7 @@ namespace SimpleMvvm.View
         }
 
         /// <summary>
-        /// Runs the initialization sequence to configure the Prism application.
+        /// Runs the initialization sequence to configure the SimpleMvvm application.
         /// </summary>
         public virtual void Initialize()
         {
@@ -105,22 +106,22 @@ namespace SimpleMvvm.View
         }
 
         /// <summary>
-        /// Creates the container used by Prism.
+        /// Creates the container used by SimpleMvvm.
         /// </summary>
         /// <returns>The container</returns>
         protected abstract IContainerExtension CreateContainerExtension();
 
         /// <summary>
-        /// Registers all types that are required by Prism to function with the container.
+        /// Registers all types that are required by SimpleMvvm to function with the container.
         /// </summary>
         /// <param name="containerRegistry"></param>
         protected virtual void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance(containerExtension);
-            //containerRegistry.RegisterSingleton<ILoggerFacade, TextLogger>();
+            containerRegistry.RegisterSingleton<ILoggerFacade, TextLogger>();
             containerRegistry.RegisterSingleton<RegionAdapterMappings>();
             containerRegistry.RegisterSingleton<IRegionManager, RegionManager>();
-            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
+            //containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
             containerRegistry.RegisterSingleton<IRegionViewRegistry, RegionViewRegistry>();
             containerRegistry.RegisterSingleton<IRegionBehaviorFactory, RegionBehaviorFactory>();
             containerRegistry.Register<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>();

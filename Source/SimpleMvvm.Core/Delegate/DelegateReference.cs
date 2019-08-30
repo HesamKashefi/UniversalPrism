@@ -6,7 +6,7 @@ namespace SimpleMvvm.Core.Delegate
     /// <summary>
     /// Represents a reference to a <see cref="SimpleMvvm.Core.Delegate"/> that may contain a
     /// <see cref="WeakReference"/> to the target. This class is used
-    /// internally by the Prism Library.
+    /// internally by the SimpleMvvm Library.
     /// </summary>
     public class DelegateReference : IDelegateReference
     {
