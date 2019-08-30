@@ -44,7 +44,6 @@ namespace SimpleMvvm.View
             try
             {
                 await OnStartAsync(startArgs);
-                Window.Current.Activate();
             }
             finally
             {
@@ -186,7 +185,7 @@ namespace SimpleMvvm.View
         /// <summary>
         /// Initializes the shell.
         /// </summary>
-        protected virtual void InitializeShell(DependencyObject shellObj)
+        protected virtual void InitializeShell(DependencyObject appShell)
         {
         }
 
@@ -204,7 +203,6 @@ namespace SimpleMvvm.View
         /// </summary>
         protected virtual void OnInitialized()
         {
-            Window.Current.Activate();
         }
 
         /// <summary>

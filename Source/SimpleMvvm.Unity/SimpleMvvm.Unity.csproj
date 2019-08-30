@@ -120,6 +120,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="UnityApplicationBase.cs" />
     <Compile Include="UnityRegionNavigationContentLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityContainerExtension.cs" />
@@ -146,11 +147,6 @@
       <Project>{EF4E2E0A-B104-4019-BC96-A8CB7ED6D542}</Project>
       <Name>SimpleMvvm.View</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="CommonServiceLocator">
-      <HintPath>..\..\..\..\..\Users\hkash\.nuget\packages\commonservicelocator\2.0.4\lib\netstandard2.0\CommonServiceLocator.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
