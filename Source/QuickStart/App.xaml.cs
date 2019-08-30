@@ -1,8 +1,8 @@
-﻿using SimpleMvvm.Unity;
-using SimpleMvvm.View;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using UniversalPrism.Unity;
+using UniversalPrism.View;
 
 namespace QuickStart
 {
