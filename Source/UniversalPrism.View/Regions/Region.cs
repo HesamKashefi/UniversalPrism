@@ -358,7 +358,7 @@ namespace UniversalPrism.View.Regions
             ItemMetadata itemMetadata = this.ItemMetadataCollection.FirstOrDefault(x => x.Item == view);
 
             if (itemMetadata == null)
-                throw new ArgumentException("ViewNotInRegionException", nameof(view));
+                throw new ArgumentException($"ViewNotInRegionException - {nameof(view)}", nameof(view));
 
             return itemMetadata;
         }

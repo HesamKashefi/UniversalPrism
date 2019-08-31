@@ -83,7 +83,6 @@ namespace UniversalPrism.View.Regions.Adapters
                     {
                         IRegionBehavior behavior = behaviorFactory.CreateFromKey(behaviorKey);
 
-                        //todo: can I move this null check up? to prevent the creation of the behavior? is it needed? is behaviorFactory singleton?
                         if (dependencyObjectRegionTarget != null)
                         {
                             if (behavior is IHostAwareRegionBehavior hostAwareRegionBehavior)

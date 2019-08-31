@@ -28,6 +28,8 @@ namespace UniversalPrism.View
         private static readonly SemaphoreSlim StartSemaphore = new SemaphoreSlim(1, 1);
         IContainerExtension containerExtension;
 
+        public DependencyObject Shell { get; set; }
+
         public ApplicationBase()
         {
             InitializeInternal();
@@ -188,6 +190,7 @@ namespace UniversalPrism.View
         /// </summary>
         protected virtual void InitializeShell(DependencyObject appShell)
         {
+            Shell = appShell;
         }
 
         /// <summary>

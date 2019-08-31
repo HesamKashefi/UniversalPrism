@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using UniversalPrism.Unity;
 using UniversalPrism.View;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace QuickStart
 {
@@ -24,14 +24,13 @@ namespace QuickStart
 
         protected override Task OnStartAsync(StartArgs startArgs)
         {
-            if (!(Window.Current.Content is Frame rootFrame))
-            {
-                rootFrame = new Frame();
-            }
-            rootFrame.Navigate(typeof(MainPage));
+            var rootFrame = Shell as Frame;
             Window.Current.Content = rootFrame;
-            Window.Current.Activate();
 
+            //send container to the main page
+            rootFrame.Navigate(typeof(MainPage), Container);
+
+            Window.Current.Activate();
             return Task.CompletedTask;
         }
     }

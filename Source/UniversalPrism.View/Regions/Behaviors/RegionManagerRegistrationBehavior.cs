@@ -41,10 +41,7 @@ namespace UniversalPrism.View.Regions.Behaviors
         /// <exception cref="InvalidOperationException">When this member is set after the <see cref="IRegionBehavior.Attach"/> method has being called.</exception>
         public DependencyObject HostControl
         {
-            get
-            {
-                return hostControl;
-            }
+            get => hostControl;
             set
             {
                 if (IsAttached)
@@ -126,12 +123,13 @@ namespace UniversalPrism.View.Regions.Behaviors
 
         private IRegionManager FindRegionManager(DependencyObject dependencyObject)
         {
-            var regionmanager = this.RegionManagerAccessor.GetRegionManager(dependencyObject);
-            if (regionmanager != null)
+            var regionManager = this.RegionManagerAccessor.GetRegionManager(dependencyObject);
+            if (regionManager != null)
             {
-                return regionmanager;
+                return regionManager;
             }
 
+            //todo : find out why parent is null
             DependencyObject parent = null;
             parent = VisualTreeHelper.GetParent(dependencyObject);
             if (parent != null)

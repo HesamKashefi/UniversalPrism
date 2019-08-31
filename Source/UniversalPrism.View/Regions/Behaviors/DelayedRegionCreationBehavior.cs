@@ -97,7 +97,6 @@ namespace UniversalPrism.View.Regions.Behaviors
                 return;
             }
 
-            //todo: what's the impact of replacing targetElement.CheckAccess()?
             if (targetElement.Dispatcher.HasThreadAccess)
             {
                 this.Detach();
