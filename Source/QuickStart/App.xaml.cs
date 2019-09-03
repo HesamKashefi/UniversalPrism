@@ -3,6 +3,7 @@ using UniversalPrism.Unity;
 using UniversalPrism.View;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using QuickStart.Pages;
 
 namespace QuickStart
 {

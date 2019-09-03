@@ -1,10 +1,10 @@
-﻿using QuickStart.Views;
+﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using QuickStart.Views;
 using UniversalPrism.Core.Container;
 using UniversalPrism.View.Regions;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
-namespace QuickStart
+namespace QuickStart.Pages
 {
     public sealed partial class MainPage : Page
     {
@@ -29,6 +29,8 @@ namespace QuickStart
         {
             var regionManager = container.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion("Main", typeof(MainView));
+            regionManager.RegisterViewWithRegion("SubRegion", typeof(ViewAView));
+            regionManager.RegisterViewWithRegion("SubRegion", typeof(ViewBView));
         }
     }
 }
