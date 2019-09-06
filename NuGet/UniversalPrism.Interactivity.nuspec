@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>UniversalPrism.Interactivity</id>
+    <version>1.0.0-preview1</version>
+    <authors>HesamKa</authors>
+    <owners>HesamKa</owners>
+    
+    <license type="file">LICENSE.txt</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    
+    <projectUrl>https://github.com/HesamKashefi/UniversalPrism</projectUrl>
+    
+    <repository type="git" url="https://github.com/HesamKashefi/UniversalPrism.git" branch="master"/>
+
+    <description>
+      UniversalPrism is a framework for building loosely coupled, maintainable, and testable XAML applications in Windows 10 UWP. This library is based on PrismLibrary and Template10
+      
+       This library adds ability to show ContentDialogs in UniversalPrism.
+    </description>
+    
+    <summary>
+       This library adds ability to show ContentDialogs in UniversalPrism.
+    </summary>
+
+    <releaseNotes>First preview release.</releaseNotes>
+    
+    <copyright>Copyright 2019</copyright>
+    
+    <tags>Prism UWP UniversalPrism Universal</tags>
+    
+    <dependencies>
+      <dependency id="CommonServiceLocator" version="2.0.4" />
+      <dependency id="Unity" version="5.11.1" />
+      <dependency id="UniversalPrism" version="1.0.0-preview1" />
+    </dependencies>
+
+  </metadata>
+  <files>
+    <file src="..\LICENSE.txt" target="" />
+    
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.dll" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.pdb" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.pri" target="lib\uap10.0\" />
+    
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.dll" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.pdb" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.pri" target="lib\uap10.0\" />
+    
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.dll" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.pdb" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.pri" target="lib\uap10.0\" />
+    
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.dll" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pdb" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pri" target="lib\uap10.0\" />
+  </files>
+</package>

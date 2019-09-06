@@ -32,10 +32,10 @@
 
   </metadata>
   <files>
-    <file src=".\LICENSE.txt" target="" />
-    <file src=".\Source\UniversalPrism.Unity\bin\x64\Release\" target="lib\uap10.0\" />
-    <file src=".\Source\UniversalPrism.Unity\bin\x86\Release\" target="lib\uap10.0\" />
-    <file src=".\Source\UniversalPrism.Unity\bin\ARM\Release\" target="lib\uap10.0\" />
-    <file src=".\Source\UniversalPrism.Unity\bin\ARM64\Release\" target="lib\uap10.0\" />
+    <file src="..\LICENSE.txt" target="" />
+    <file src="..\Source\UniversalPrism.Unity\bin\x64\Release\" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Unity\bin\x86\Release\" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Unity\bin\ARM\Release\" target="lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Unity\bin\ARM64\Release\" target="lib\uap10.0\" />
   </files>
 </package>
