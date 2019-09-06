@@ -3,7 +3,10 @@ using UniversalPrism.Unity;
 using UniversalPrism.View;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using QuickStart.Dialogs;
 using QuickStart.Pages;
+using UniversalPrism.Core.Container;
+using UniversalPrism.Interactivity;
 
 namespace QuickStart
 {
@@ -12,6 +15,13 @@ namespace QuickStart
         public App()
         {
             InitializeComponent();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            base.RegisterTypes(containerRegistry);
+            containerRegistry.Register<IDialogService, DialogService>();
+            containerRegistry.RegisterContentDialog<ConfirmationDialog>("confirmation");
         }
 
         protected override DependencyObject CreateShell()

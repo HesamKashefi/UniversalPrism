@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStart", "QuickStart\Qu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalPrism.Unity", "UniversalPrism.Unity\UniversalPrism.Unity.csproj", "{1325096C-0591-4ED9-B2FA-006BDFCFCD82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalPrism.Interactivity", "UniversalPrism.Interactivity\UniversalPrism.Interactivity.csproj", "{57F09B70-7038-44AD-A7D0-7A37CDA915C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,26 @@ Global
 		{1325096C-0591-4ED9-B2FA-006BDFCFCD82}.Release|x64.Build.0 = Release|x64
 		{1325096C-0591-4ED9-B2FA-006BDFCFCD82}.Release|x86.ActiveCfg = Release|x86
 		{1325096C-0591-4ED9-B2FA-006BDFCFCD82}.Release|x86.Build.0 = Release|x86
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|ARM.Build.0 = Debug|ARM
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|ARM64.Build.0 = Debug|ARM64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|x64.ActiveCfg = Debug|x64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|x64.Build.0 = Debug|x64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|x86.ActiveCfg = Debug|x86
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Debug|x86.Build.0 = Debug|x86
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|ARM.ActiveCfg = Release|ARM
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|ARM.Build.0 = Release|ARM
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|ARM64.ActiveCfg = Release|ARM64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|ARM64.Build.0 = Release|ARM64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|x64.ActiveCfg = Release|x64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|x64.Build.0 = Release|x64
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|x86.ActiveCfg = Release|x86
+		{57F09B70-7038-44AD-A7D0-7A37CDA915C1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

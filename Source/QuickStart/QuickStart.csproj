@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ConfirmationDialog.xaml.cs">
+      <DependentUpon>ConfirmationDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Dialogs\ConfirmationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -185,6 +192,10 @@
     <ProjectReference Include="..\UniversalPrism.Core\UniversalPrism.Core.csproj">
       <Project>{4ac34e5b-53e9-43a8-931c-4a8bdcd12362}</Project>
       <Name>UniversalPrism.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniversalPrism.Interactivity\UniversalPrism.Interactivity.csproj">
+      <Project>{57F09B70-7038-44AD-A7D0-7A37CDA915C1}</Project>
+      <Name>UniversalPrism.Interactivity</Name>
     </ProjectReference>
     <ProjectReference Include="..\UniversalPrism.Unity\UniversalPrism.Unity.csproj">
       <Project>{1325096c-0591-4ed9-b2fa-006bdfcfcd82}</Project>
