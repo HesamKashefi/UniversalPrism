@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using UniversalPrism.Core.Container;
+using System.Collections.Generic;
 
 namespace UniversalPrism.Interactivity
 {
@@ -21,8 +22,36 @@ namespace UniversalPrism.Interactivity
         #region Implementation Of IDialogService
         public async Task<ContentDialogResult> ShowDialogAsync(string name)
         {
-            var type = DialogContainerExtensions.GetType(name);
-            var dialog = (ContentDialog)container.Resolve(type, name);
+            var dialog = GetDialog(name);
+            return await dialog.ShowAsync();
+        }
+
+        public async Task<ContentDialogResult> ShowDialogAsync(string name, Dictionary<string, object> parameters)
+        {
+            var dialog = GetDialog(name);
+            if (dialog is IDataAwareDialog theDialog)
+            {
+                theDialog.OnNavigatedTo(parameters);
+            }
+            else
+            {
+                throw new InvalidOperationException($"The dialog with name : '{name}', does not implement '{nameof(IDataAwareDialog)}'");
+            }
+            return await dialog.ShowAsync();
+        }
+
+        public async Task<ContentDialogResult> ShowDialogAsync(string name, object dataContext, Dictionary<string, object> parameters)
+        {
+            var dialog = GetDialog(name);
+            if(dialog is IDataAwareDialog theDialog)
+            {
+                theDialog.DataContext = dataContext;
+                theDialog.OnNavigatedTo(parameters);
+            }
+            else
+            {
+                throw new InvalidOperationException($"The dialog with name : '{name}', does not implement '{nameof(IDataAwareDialog)}'");
+            }
             return await dialog.ShowAsync();
         }
 
@@ -59,7 +88,13 @@ namespace UniversalPrism.Interactivity
             }
 
             return await dialog.ShowAsync();
-        } 
+        }
         #endregion
+
+        private ContentDialog GetDialog(string name)
+        {
+            var type = DialogContainerExtensions.GetType(name);
+            return (ContentDialog)container.Resolve(type, name);
+        }
     }
 }

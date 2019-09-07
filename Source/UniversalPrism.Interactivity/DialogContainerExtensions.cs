@@ -14,7 +14,7 @@ namespace UniversalPrism.Interactivity
             return RegisteredDialogs[name];
         }
 
-        public static void RegisterContentDialog<T>(this IContainerRegistry containerRegistry, string name) where T : ContentDialog
+        public static void RegisterContentDialog<TContentDialog>(this IContainerRegistry containerRegistry, string name) where TContentDialog : ContentDialog
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -23,13 +23,13 @@ namespace UniversalPrism.Interactivity
 
             if (RegisteredDialogs.ContainsKey(name))
             {
-                if (RegisteredDialogs[name] != typeof(T))
+                if (RegisteredDialogs[name] != typeof(TContentDialog))
                     throw new InvalidOperationException($"Dialog with name:{name} is already registered with type:{RegisteredDialogs[name].Name}");
                 return;
             }
 
-            RegisteredDialogs.Add(name, typeof(T));
-            containerRegistry.Register<T>(name);
+            RegisteredDialogs.Add(name, typeof(TContentDialog));
+            containerRegistry.Register<TContentDialog>(name);
         }
     }
 }

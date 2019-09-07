@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UniversalPrism.Core.Mvvm;
 using UniversalPrism.Interactivity;
 
@@ -22,7 +23,9 @@ namespace QuickStart.ViewModels
 
         public async Task ShowDialogAsync()
         {
-            var result = await dialogService.ShowDialogAsync("confirmation");
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("Id", 1993);
+            var result = await dialogService.ShowDialogAsync("confirmation", parameters);
         }
     }
 }

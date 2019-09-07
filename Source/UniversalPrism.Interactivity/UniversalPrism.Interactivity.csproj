@@ -123,6 +123,7 @@
     <Compile Include="DialogArgs.cs" />
     <Compile Include="DialogContainerExtensions.cs" />
     <Compile Include="DialogService.cs" />
+    <Compile Include="IDataAwareDialog.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\UniversalPrism.Interactivity.rd.xml" />
