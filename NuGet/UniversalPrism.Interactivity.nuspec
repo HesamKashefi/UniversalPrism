@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism.Interactivity</id>
-    <version>1.0.0-preview3</version>
+    <version>1.0.0-preview4</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -23,7 +23,7 @@
        This library adds ability to show ContentDialogs in UniversalPrism.
     </summary>
 
-    <releaseNotes>Data support for dialogs added</releaseNotes>
+    <releaseNotes>Architectures updated</releaseNotes>
     
     <copyright>Copyright 2019</copyright>
     
@@ -32,27 +32,31 @@
     <dependencies>
       <dependency id="CommonServiceLocator" version="2.0.4" />
       <dependency id="Unity" version="5.11.1" />
-      <dependency id="UniversalPrism" version="1.0.0-preview3" />
+      <dependency id="UniversalPrism" version="1.0.0-preview4" />
     </dependencies>
 
   </metadata>
   <files>
     <file src="..\LICENSE.txt" target="" />
     
-    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-x64\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-x64\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-x64\lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x64\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-x64\lib\uap10.0" />
     
-    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-x86\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-x86\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-x86\lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\x86\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-x86\lib\uap10.0" />
     
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-ARM\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-ARM\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-ARM\lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-arm\lib\uap10.0" />
     
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-ARM64\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-ARM64\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-ARM64\lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.dll" target="runtimes\win10-arm64\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-arm64\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-arm64\lib\uap10.0" />
+
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.dll" target="ref\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pdb" target="ref\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pri" target="ref\uap10.0" />
   </files>
 </package>

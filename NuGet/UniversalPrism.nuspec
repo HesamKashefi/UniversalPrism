@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism</id>
-    <version>1.0.0-preview3</version>
+    <version>1.0.0-preview4</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -33,9 +33,10 @@
   </metadata>
   <files>
     <file src="..\LICENSE.txt" target="" />
-    <file src="..\Source\UniversalPrism.Unity\bin\x64\Release\" target="runtimes\win10-x64\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Unity\bin\x86\Release\" target="runtimes\win10-x86\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Unity\bin\ARM\Release\" target="runtimes\win10-ARM\lib\uap10.0\" />
-    <file src="..\Source\UniversalPrism.Unity\bin\ARM64\Release\" target="runtimes\win10-ARM64\lib\uap10.0\" />
+    <file src="..\Source\UniversalPrism.Unity\bin\x64\Release\" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Unity\bin\x86\Release\" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Unity\bin\ARM\Release\" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Unity\bin\ARM64\Release\" target="runtimes\win10-arm64\lib\uap10.0" />
+    <file src="..\Source\UniversalPrism.Unity\bin\Release\" target="ref\uap10.0" />
   </files>
 </package>
