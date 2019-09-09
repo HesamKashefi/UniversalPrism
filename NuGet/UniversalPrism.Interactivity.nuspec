@@ -55,8 +55,8 @@
     <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pdb" target="runtimes\win10-arm64\lib\uap10.0" />
     <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pri" target="runtimes\win10-arm64\lib\uap10.0" />
 
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.dll" target="ref\uap10.0" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pdb" target="ref\uap10.0" />
-    <file src="..\Source\UniversalPrism.Interactivity\bin\ARM64\Release\UniversalPrism.Interactivity.pri" target="ref\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\Release\UniversalPrism.Interactivity.dll" target="ref\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\Release\UniversalPrism.Interactivity.pdb" target="ref\uap10.0" />
+    <file src="..\Source\UniversalPrism.Interactivity\bin\Release\UniversalPrism.Interactivity.pri" target="ref\uap10.0" />
   </files>
 </package>
