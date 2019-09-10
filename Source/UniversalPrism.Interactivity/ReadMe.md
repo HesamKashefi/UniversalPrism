@@ -2,6 +2,10 @@
 
 This library adds ability to show dialogs from View Models.
 
+## Installation
+
+    Install-Package UniversalPrism.Interactivity -Version 1.0.0-preview4
+
 ## Register Services
 
 In the `App.Xaml.cs` :
