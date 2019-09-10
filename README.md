@@ -11,7 +11,7 @@ I hope we can add this to original `Prism` when the time comes.
 `UniversalPrism` is a fork of `Prism` with footprints of `Template10`, so to understand how it works you can read `Prism`'s documents.
 
 ## Installation
-    Install-Package UniversalPrism -Version 1.0.0-preview2
+    Install-Package UniversalPrism -Version 1.0.0-preview4
 
 ## Bootstrapping your app
 Update your `app.xaml.cs` file
@@ -80,6 +80,10 @@ After sending the `container` from last step to MainPage, you can get in your Ma
             regionManager.RegisterViewWithRegion("Main", typeof(MainView));
         }
     }
+
+## UniversalPrism.Interactivity
+
+Wanna show Content Dialogs? Check out [UniversalPrism.Interactivity](https://github.com/HesamKashefi/UniversalPrism/tree/master/Source/UniversalPrism.Interactivity)
 
 ## Questions?
 For general questions you can try [StackOverflow](www.stackoverflow.com) with `prism` + `universalprism` tags.
