@@ -11,7 +11,7 @@ I hope we can add this to original `Prism` when the time comes.
 `UniversalPrism` is a fork of `Prism` with footprints of `Template10`, so to understand how it works you can read `Prism`'s documents.
 
 ## Installation
-    Install-Package UniversalPrism -Version 1.0.0-preview5
+    Install-Package UniversalPrism -Version 1.0.0-preview6
 
 ## Bootstrapping your app
 Update your `app.xaml.cs` file

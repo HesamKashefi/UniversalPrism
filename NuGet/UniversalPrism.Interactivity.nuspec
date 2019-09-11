@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism.Interactivity</id>
-    <version>1.0.0-preview5</version>
+    <version>1.0.0-preview6</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -32,7 +32,7 @@
     <dependencies>
       <dependency id="CommonServiceLocator" version="2.0.4" />
       <dependency id="Unity" version="5.11.1" />
-      <dependency id="UniversalPrism" version="1.0.0-preview5" />
+      <dependency id="UniversalPrism" version="1.0.0-preview6" />
     </dependencies>
 
   </metadata>
