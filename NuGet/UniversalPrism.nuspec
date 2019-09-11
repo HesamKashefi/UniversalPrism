@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism</id>
-    <version>1.0.0-preview4</version>
+    <version>1.0.0-preview5</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -19,11 +19,11 @@
        This is library brings Prism to UWP for creating loosely coupled, maintainable, and testable XAML applications in Windows 10 UWP
     </summary>
 
-    <releaseNotes>Architectures updated</releaseNotes>
+    <releaseNotes>Doc updated</releaseNotes>
     
     <copyright>Copyright 2019</copyright>
     
-    <tags>Prism UWP UniversalPrism Universal</tags>
+    <tags>Prism UWP UniversalPrism Universal csharp</tags>
     
     <dependencies>
       <dependency id="CommonServiceLocator" version="2.0.4" />

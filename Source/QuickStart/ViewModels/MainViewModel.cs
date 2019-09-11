@@ -4,11 +4,11 @@ namespace QuickStart.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private string title = "Main View";
+        private string _title = "Main View";
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
     }
 }

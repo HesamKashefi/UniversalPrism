@@ -6,23 +6,23 @@ namespace QuickStart.ViewModels
 {
     public class ViewAViewModel : ViewModelBase
     {
-        private readonly IDialogService dialogService;
+        private readonly IDialogService _dialogService;
 
         public ViewAViewModel(IDialogService dialogService)
         {
-            this.dialogService = dialogService;
+            _dialogService = dialogService;
         }
 
-        private string title = "View A";
+        private string _title = "View A";
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         public async Task ShowDialogAsync()
         {
-            var result = await dialogService.ShowDialogAsync(new DialogArgs
+            var result = await _dialogService.ShowDialogAsync(new DialogArgs
             {
                 Title = "Load",
                 Content = "Dialog request succeeded",

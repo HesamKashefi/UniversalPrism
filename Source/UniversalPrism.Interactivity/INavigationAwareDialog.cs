@@ -5,10 +5,8 @@ namespace UniversalPrism.Interactivity
     /// <summary>
     /// Adds support for extra data to be send to the dialog
     /// </summary>
-    public interface IDataAwareDialog
+    public interface INavigationAwareDialog
     {
-        object DataContext { get; set; }
-
         /// <summary>
         /// This method is called when dialog is opened
         /// </summary>

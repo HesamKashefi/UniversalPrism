@@ -21,25 +21,15 @@ namespace UniversalPrism.Interactivity
         /// The parameters will be sent to dialog
         /// </summary>
         /// <param name="name">Name of the registered dialog</param>
-        /// <param name="parameters">Extra parameters to send to a dialog that implements <see cref="IDataAwareDialog"/></param>
+        /// <param name="parameters">Extra parameters to send to a dialog that implements <see cref="INavigationAwareDialog"/></param>
         /// <returns>Result of the dialog</returns>
         Task<ContentDialogResult> ShowDialogAsync(string name, Dictionary<string, object> parameters);
-
-        /// <summary>
-        /// Shows a registered dialog with the specified name
-        /// The parameters will be sent to dialog
-        /// </summary>
-        /// <param name="name">Name of the registered dialog</param>
-        /// <param name="dataContext">DataContext of the registered dialog</param>
-        /// <param name="parameters">Extra parameters to send to a dialog that implements <see cref="IDataAwareDialog"/></param>
-        /// <returns>Result of the dialog</returns>
-        Task<ContentDialogResult> ShowDialogAsync(string name, object dataContext, Dictionary<string, object> parameters);
 
         /// <summary>
         /// Shows a preconfigured dialog
         /// </summary>
         /// <param name="dialogArgs">Configuration of the dialog</param>
         /// <returns>Result of the dialog</returns>
-        Task<ContentDialogResult> ShowDialogAsync(DialogArgs dialogArgs);
+        Task<ContentDialogResult> ShowDialogAsync(IDialogArgs dialogArgs);
     }
 }

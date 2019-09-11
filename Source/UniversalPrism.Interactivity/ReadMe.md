@@ -12,13 +12,10 @@ In the `App.Xaml.cs` :
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        base.RegisterTypes(containerRegistry);
-                
-        // Register dialog service
-        containerRegistry.Register<IDialogService, DialogService>();
+		...
 
-        //Register your custom dialog
-        containerRegistry.RegisterContentDialog<ConfirmationDialog>("confirmation");
+        // Register dialog service
+        containerRegistry.AddDialogServices();
     }
 ----
 
@@ -48,7 +45,18 @@ In the `App.Xaml.cs` :
 ----
 ### Show a custom dialog
 
-You can simply call `dialogService.ShowDialogAsync` with the regitered dialog name
+
+In the `App.Xaml.cs` regiter your content dialog :
+
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+		...
+
+        //Register your custom dialog
+        containerRegistry.RegisterContentDialog<ConfirmationDialog>("confirmation");
+    }
+
+Then you can simply call `dialogService.ShowDialogAsync` with the regitered dialog name
 
     public class MyViewModel : ViewModelBase
     {
@@ -64,3 +72,5 @@ You can simply call `dialogService.ShowDialogAsync` with the regitered dialog na
             var result = await dialogService.ShowDialogAsync("confirmation");
         }
     }
+
+You can also send parameters with `ShowDialogAsync` overloads to the dialog if you implement `INavigationAwareDialog` in your dialog or it's DataContext.

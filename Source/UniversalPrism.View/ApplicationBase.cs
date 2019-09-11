@@ -26,7 +26,7 @@ namespace UniversalPrism.View
     public abstract partial class ApplicationBase : Application
     {
         private static readonly SemaphoreSlim StartSemaphore = new SemaphoreSlim(1, 1);
-        IContainerExtension containerExtension;
+        private IContainerExtension _containerExtension;
 
         public DependencyObject Shell { get; set; }
 
@@ -38,7 +38,7 @@ namespace UniversalPrism.View
         /// <summary>
         /// The dependency injection container used to resolve objects
         /// </summary>
-        public IContainerProvider Container => containerExtension;
+        public IContainerProvider Container => _containerExtension;
 
         private async Task InternalStartAsync(StartArgs startArgs)
         {
@@ -78,21 +78,21 @@ namespace UniversalPrism.View
         public virtual void Initialize()
         {
             #region IOC Container
-            containerExtension = CreateContainerExtension();
-            RegisterRequiredTypes(containerExtension);
-            RegisterTypes(containerExtension);
-            containerExtension.FinalizeExtension();
+            _containerExtension = CreateContainerExtension();
+            RegisterRequiredTypes(_containerExtension);
+            RegisterTypes(_containerExtension);
+            _containerExtension.FinalizeExtension();
             #endregion
 
             ConfigureServiceLocator();
 
             #region Region Adapters
-            var regionAdapterMappings = containerExtension.Resolve<RegionAdapterMappings>();
+            var regionAdapterMappings = _containerExtension.Resolve<RegionAdapterMappings>();
             ConfigureRegionAdapterMappings(regionAdapterMappings);
             #endregion
 
             #region Region Behaviors
-            var defaultRegionBehaviors = containerExtension.Resolve<IRegionBehaviorFactory>();
+            var defaultRegionBehaviors = _containerExtension.Resolve<IRegionBehaviorFactory>();
             ConfigureDefaultRegionBehaviors(defaultRegionBehaviors);
             #endregion
 
@@ -101,7 +101,7 @@ namespace UniversalPrism.View
             var appShell = CreateShell();
             if (appShell != null)
             {
-                RegionManager.SetRegionManager(appShell, containerExtension.Resolve<IRegionManager>());
+                RegionManager.SetRegionManager(appShell, _containerExtension.Resolve<IRegionManager>());
                 RegionManager.UpdateRegions();
                 InitializeShell(appShell);
             }
@@ -119,7 +119,7 @@ namespace UniversalPrism.View
         /// <param name="containerRegistry"></param>
         protected virtual void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance(containerExtension);
+            containerRegistry.RegisterInstance(_containerExtension);
             containerRegistry.RegisterSingleton<ILoggerFacade, TextLogger>();
             containerRegistry.RegisterSingleton<RegionAdapterMappings>();
             containerRegistry.RegisterSingleton<IRegionManager, RegionManager>();
@@ -164,9 +164,9 @@ namespace UniversalPrism.View
         {
             if (regionAdapterMappings != null)
             {
-                regionAdapterMappings.RegisterMapping(typeof(Selector), containerExtension.Resolve<SelectorRegionAdapter>());
-                regionAdapterMappings.RegisterMapping(typeof(ItemsControl), containerExtension.Resolve<ItemsControlRegionAdapter>());
-                regionAdapterMappings.RegisterMapping(typeof(ContentControl), containerExtension.Resolve<ContentControlRegionAdapter>());
+                regionAdapterMappings.RegisterMapping(typeof(Selector), _containerExtension.Resolve<SelectorRegionAdapter>());
+                regionAdapterMappings.RegisterMapping(typeof(ItemsControl), _containerExtension.Resolve<ItemsControlRegionAdapter>());
+                regionAdapterMappings.RegisterMapping(typeof(ContentControl), _containerExtension.Resolve<ContentControlRegionAdapter>());
             }
         }
 
@@ -180,13 +180,14 @@ namespace UniversalPrism.View
         }
 
         /// <summary>
-        /// Creates the shell or main window of the application.
+        /// Creates the shell or main page of the application.
+        /// DO NOT SET ANYTHING ON THE CURRENT APP UI HERE JUST CREATE YOUR SHELL
         /// </summary>
         /// <returns>The shell of the application.</returns>
         protected abstract DependencyObject CreateShell();
 
         /// <summary>
-        /// Initializes the shell.
+        /// Initializes Shell.
         /// </summary>
         protected virtual void InitializeShell(DependencyObject appShell)
         {
@@ -195,6 +196,7 @@ namespace UniversalPrism.View
 
         /// <summary>
         /// This will be called on app startup
+        /// Here you can set shell in the current application window as the app is ready to start
         /// </summary>
         /// <param name="startArgs"></param>
         protected virtual Task OnStartAsync(StartArgs startArgs)
@@ -214,7 +216,7 @@ namespace UniversalPrism.View
         /// </summary>
         protected virtual void ConfigureServiceLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => containerExtension.Resolve<IServiceLocator>());
+            ServiceLocator.SetLocatorProvider(() => _containerExtension.Resolve<IServiceLocator>());
         }
     }
 }

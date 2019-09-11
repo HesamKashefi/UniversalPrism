@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace QuickStart.Dialogs
 {
-    public sealed partial class ConfirmationDialog : ContentDialog, IDataAwareDialog
+    public sealed partial class ConfirmationDialog : ContentDialog, INavigationAwareDialog
     {
         public ConfirmationDialog()
         {

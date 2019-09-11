@@ -2,7 +2,7 @@
 
 namespace UniversalPrism.Interactivity
 {
-    public class DialogArgs
+    public class DialogArgs : IDialogArgs
     {
         public ICommand PrimaryButtonCommand { get; set; }
         public object PrimaryButtonCommandParameter { get; set; }

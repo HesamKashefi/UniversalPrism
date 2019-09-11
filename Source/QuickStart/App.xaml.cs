@@ -20,7 +20,7 @@ namespace QuickStart
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             base.RegisterTypes(containerRegistry);
-            containerRegistry.Register<IDialogService, DialogService>();
+            containerRegistry.AddDialogServices();
             containerRegistry.RegisterContentDialog<ConfirmationDialog>("confirmation");
         }
 

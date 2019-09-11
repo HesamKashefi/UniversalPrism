@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using UniversalPrism.Core.Container;
 using System.Collections.Generic;
+using UniversalPrism.View.Common;
 
 namespace UniversalPrism.Interactivity
 {
@@ -29,33 +30,11 @@ namespace UniversalPrism.Interactivity
         public async Task<ContentDialogResult> ShowDialogAsync(string name, Dictionary<string, object> parameters)
         {
             var dialog = GetDialog(name);
-            if (dialog is IDataAwareDialog theDialog)
-            {
-                theDialog.OnNavigatedTo(parameters);
-            }
-            else
-            {
-                throw new InvalidOperationException($"The dialog with name : '{name}', does not implement '{nameof(IDataAwareDialog)}'");
-            }
+            MvvmHelpers.ViewAndViewModelAction<INavigationAwareDialog>(dialog, d => d.OnNavigatedTo(parameters));
             return await dialog.ShowAsync();
         }
 
-        public async Task<ContentDialogResult> ShowDialogAsync(string name, object dataContext, Dictionary<string, object> parameters)
-        {
-            var dialog = GetDialog(name);
-            if(dialog is IDataAwareDialog theDialog)
-            {
-                theDialog.DataContext = dataContext;
-                theDialog.OnNavigatedTo(parameters);
-            }
-            else
-            {
-                throw new InvalidOperationException($"The dialog with name : '{name}', does not implement '{nameof(IDataAwareDialog)}'");
-            }
-            return await dialog.ShowAsync();
-        }
-
-        public async Task<ContentDialogResult> ShowDialogAsync(DialogArgs dialogArgs)
+        public async Task<ContentDialogResult> ShowDialogAsync(IDialogArgs dialogArgs)
         {
             var dialog = new ContentDialog
             {
