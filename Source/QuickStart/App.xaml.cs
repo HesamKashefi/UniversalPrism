@@ -33,14 +33,19 @@ namespace QuickStart
             return rootFrame;
         }
 
+        protected override void InitializeShell(DependencyObject appShell)
+        {
+            base.InitializeShell(appShell);
+            if (Shell is Frame rootFrame)
+            {
+                Window.Current.Content = rootFrame;
+                //Pass the container to the main page
+                rootFrame.Navigate(typeof(MainPage), Container);
+            }
+        }
+
         protected override Task OnStartAsync(StartArgs startArgs)
         {
-            var rootFrame = Shell as Frame;
-            Window.Current.Content = rootFrame;
-
-            //send container to the main page
-            rootFrame.Navigate(typeof(MainPage), Container);
-
             Window.Current.Activate();
             return Task.CompletedTask;
         }

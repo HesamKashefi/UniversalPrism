@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism.Interactivity</id>
-    <version>1.0.0-preview6</version>
+    <version>1.0.0-preview7</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -23,7 +23,7 @@
        This library adds ability to show ContentDialogs in UniversalPrism.
     </summary>
 
-    <releaseNotes>INavigationAwareDialog updated</releaseNotes>
+    <releaseNotes>Evenst added</releaseNotes>
     
     <copyright>Copyright 2019</copyright>
     
@@ -32,7 +32,7 @@
     <dependencies>
       <dependency id="CommonServiceLocator" version="2.0.4" />
       <dependency id="Unity" version="5.11.1" />
-      <dependency id="UniversalPrism" version="1.0.0-preview6" />
+      <dependency id="UniversalPrism" version="1.0.0-preview7" />
     </dependencies>
 
   </metadata>

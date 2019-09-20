@@ -125,7 +125,6 @@
     <Compile Include="Common\MvvmHelpers.cs" />
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\UriParsingHelper.cs" />
-    <Compile Include="IFrameFacade.cs" />
     <Compile Include="Logging\Category.cs" />
     <Compile Include="Logging\ILoggerFacade.cs" />
     <Compile Include="Logging\Priority.cs" />

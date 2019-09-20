@@ -1,11 +1,9 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using CommonServiceLocator;
 using UniversalPrism.Core.Container;
+using UniversalPrism.Core.Events;
 using UniversalPrism.Core.Mvvm;
 using UniversalPrism.View.Common;
 using UniversalPrism.View.Logging;
@@ -14,6 +12,9 @@ using UniversalPrism.View.Regions;
 using UniversalPrism.View.Regions.Adapters;
 using UniversalPrism.View.Regions.Behaviors;
 using UniversalPrism.View.Regions.Navigation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace UniversalPrism.View
 {
@@ -26,6 +27,7 @@ namespace UniversalPrism.View
     public abstract partial class ApplicationBase : Application
     {
         private static readonly SemaphoreSlim StartSemaphore = new SemaphoreSlim(1, 1);
+        private static int _initialized;
         private IContainerExtension _containerExtension;
 
         public DependencyObject Shell { get; set; }
@@ -40,12 +42,17 @@ namespace UniversalPrism.View
         /// </summary>
         public IContainerProvider Container => _containerExtension;
 
+        /// <summary>
+        /// Internal start that occurs in the <see cref="ApplicationBase"/>
+        /// </summary>
+        /// <param name="startArgs">Start Arguments from the platform</param>
         private async Task InternalStartAsync(StartArgs startArgs)
         {
             await StartSemaphore.WaitAsync();
 
             try
             {
+                await CallInitializeOnceAsync();
                 await OnStartAsync(startArgs);
             }
             finally
@@ -61,7 +68,6 @@ namespace UniversalPrism.View
         {
             ConfigureViewModelLocator();
             Initialize();
-            OnInitialized();
         }
 
         /// <summary>
@@ -97,7 +103,26 @@ namespace UniversalPrism.View
             #endregion
 
             RegisterFrameworkExceptionTypes();
+        }
 
+        /// <summary>
+        /// Calls Initialize method once
+        /// </summary>
+        private async Task CallInitializeOnceAsync()
+        {
+            // once and only once, ever
+            if (Interlocked.Increment(ref _initialized) == 1)
+            {
+                InternalShellInitialization();
+                await OnInitializedAsync();
+            }
+        }
+
+        /// <summary>
+        /// Executes the procedures to create and configure Shell
+        /// </summary>
+        private void InternalShellInitialization()
+        {
             var appShell = CreateShell();
             if (appShell != null)
             {
@@ -123,7 +148,7 @@ namespace UniversalPrism.View
             containerRegistry.RegisterSingleton<ILoggerFacade, TextLogger>();
             containerRegistry.RegisterSingleton<RegionAdapterMappings>();
             containerRegistry.RegisterSingleton<IRegionManager, RegionManager>();
-            //containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
+            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
             containerRegistry.RegisterSingleton<IRegionViewRegistry, RegionViewRegistry>();
             containerRegistry.RegisterSingleton<IRegionBehaviorFactory, RegionBehaviorFactory>();
             containerRegistry.Register<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>();
@@ -207,8 +232,9 @@ namespace UniversalPrism.View
         /// <summary>
         /// Contains actions that should occur last.
         /// </summary>
-        protected virtual void OnInitialized()
+        protected virtual Task OnInitializedAsync()
         {
+            return Task.CompletedTask;
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ This library adds ability to show dialogs from View Models.
 
 ## Installation
 
-    Install-Package UniversalPrism.Interactivity -Version 1.0.0-preview6
+    Install-Package UniversalPrism.Interactivity -Version 1.0.0-preview7
 
 ## Register Services
 

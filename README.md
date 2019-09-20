@@ -11,7 +11,7 @@ I hope we can add this to original `Prism` when the time comes.
 `UniversalPrism` is a fork of `Prism` with footprints of `Template10`, so to understand how it works you can read `Prism`'s documents.
 
 ## Installation
-    Install-Package UniversalPrism -Version 1.0.0-preview6
+    Install-Package UniversalPrism -Version 1.0.0-preview7
 
 ## Bootstrapping your app
 Update your `app.xaml.cs` file
@@ -27,6 +27,9 @@ Update your `app.xaml.cs` file
             UniversalPrism.Core.Container.IContainerRegistry containerRegistry)
         {
             base.RegisterTypes(containerRegistry);
+            //register your types here to the container
+            //example :
+            //containerRegister.RegisterType<IMyService, MyService>();
         }
 
         protected override DependencyObject CreateShell()
@@ -38,14 +41,19 @@ Update your `app.xaml.cs` file
             return rootFrame;
         }
 
+        protected override void InitializeShell(DependencyObject appShell)
+        {
+            base.InitializeShell(appShell);
+            if (Shell is Frame rootFrame)
+            {
+                Window.Current.Content = rootFrame;
+                //Pass the container to the main page
+                rootFrame.Navigate(typeof(MainPage), Container);
+            }
+        }
+
         protected override Task OnStartAsync(StartArgs startArgs)
         {
-            var rootFrame = this.Shell as Frame;
-            Window.Current.Content = rootFrame;
-
-            //send container to the main page
-            rootFrame.Navigate(typeof(MainPage), Container);
-
             Window.Current.Activate();
             return Task.CompletedTask;
         }

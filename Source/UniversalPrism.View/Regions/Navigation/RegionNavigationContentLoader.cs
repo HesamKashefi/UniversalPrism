@@ -14,7 +14,7 @@ namespace UniversalPrism.View.Regions.Navigation
     /// </summary>
     public class RegionNavigationContentLoader : IRegionNavigationContentLoader
     {
-        private readonly IServiceLocator serviceLocator;
+        private readonly IServiceLocator _serviceLocator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegionNavigationContentLoader"/> class with a service locator.
@@ -22,7 +22,7 @@ namespace UniversalPrism.View.Regions.Navigation
         /// <param name="serviceLocator">The service locator.</param>
         public RegionNavigationContentLoader(IServiceLocator serviceLocator)
         {
-            this.serviceLocator = serviceLocator;
+            _serviceLocator = serviceLocator;
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace UniversalPrism.View.Regions.Navigation
             object newRegionItem;
             try
             {
-                newRegionItem = this.serviceLocator.GetInstance<object>(candidateTargetContract);
+                newRegionItem = this._serviceLocator.GetInstance<object>(candidateTargetContract);
             }
             catch (ActivationException e)
             {
@@ -117,7 +117,7 @@ namespace UniversalPrism.View.Regions.Navigation
         }
 
         /// <summary>
-        /// Returns the set of candidates that may satisfiy this navigation request.
+        /// Returns the set of candidates that may satisfy this navigation request.
         /// </summary>
         /// <param name="region">The region containing items that may satisfy the navigation request.</param>
         /// <param name="candidateNavigationContract">The candidate navigation target as determined by <see cref="GetContractFromNavigationContext"/></param>

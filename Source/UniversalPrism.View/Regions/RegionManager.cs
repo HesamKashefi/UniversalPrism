@@ -236,7 +236,7 @@ namespace UniversalPrism.View.Regions
 
         #endregion
 
-        private readonly RegionCollection regionCollection;
+        private readonly RegionCollection _regionCollection;
 
         #region Ctor
         /// <summary>
@@ -244,7 +244,7 @@ namespace UniversalPrism.View.Regions
         /// </summary>
         public RegionManager()
         {
-            regionCollection = new RegionCollection(this);
+            _regionCollection = new RegionCollection(this);
         } 
         #endregion
 
@@ -252,7 +252,7 @@ namespace UniversalPrism.View.Regions
         /// Gets a collection of <see cref="IRegion"/> that identify each region by name. You can use this collection to add or remove regions to the current region manager.
         /// </summary>
         /// <value>A <see cref="IRegionCollection"/> with all the registered regions.</value>
-        public IRegionCollection Regions => regionCollection;
+        public IRegionCollection Regions => _regionCollection;
 
         /// <summary>
         /// Creates a new region manager.
