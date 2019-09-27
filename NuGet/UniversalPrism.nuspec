@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism</id>
-    <version>1.0.0-preview7</version>
+    <version>1.0.0-preview8</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -19,7 +19,7 @@
        This is library brings Prism to UWP for creating loosely coupled, maintainable, and testable XAML applications in Windows 10 UWP
     </summary>
 
-    <releaseNotes>Events added. Improved app initialization</releaseNotes>
+    <releaseNotes>Support for more windows versions</releaseNotes>
     
     <copyright>Copyright 2019</copyright>
     
