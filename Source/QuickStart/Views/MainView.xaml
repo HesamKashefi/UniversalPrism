@@ -9,11 +9,9 @@
              xmlns:viewModels="using:QuickStart.ViewModels"
              xmlns:regions="using:UniversalPrism.View.Regions"
              universalPrism:ViewModelLocator.AutoWireViewModel="true"
+             d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <UserControl.DataContext>
-        <viewModels:MainViewModel></viewModels:MainViewModel>
-    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

@@ -11,7 +11,7 @@ I hope we can add this to original `Prism` when the time comes.
 `UniversalPrism` is a fork of `Prism` with footprints of `Template10`, so to understand how it works you can read `Prism`'s documents.
 
 ## Installation
-    Install-Package UniversalPrism -Version 1.0.0-preview7
+    Install-Package UniversalPrism
 
 ## Bootstrapping your app
 Update your `app.xaml.cs` file
@@ -34,60 +34,51 @@ Update your `app.xaml.cs` file
 
         protected override DependencyObject CreateShell()
         {
-            if (!(Window.Current.Content is Frame rootFrame))
+            var rm = Container.Resolve<RegionManager>();
+            if (!(Window.Current.Content is ContentControl contentControl))
             {
-                rootFrame = new Frame();
+                // Create root region control
+                contentControl = new ContentControl
+                {
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    VerticalContentAlignment = VerticalAlignment.Stretch
+                };
             }
-            return rootFrame;
+            // remove root region if exists
+            if (rm.Regions.ContainsRegionWithName("Root"))
+            {
+                rm.Regions.Remove("Root");
+            }
+            RegionManager.SetRegionName(contentControl, "Root");
+            return contentControl;
         }
 
         protected override void InitializeShell(DependencyObject appShell)
         {
             base.InitializeShell(appShell);
-            if (Shell is Frame rootFrame)
+            if (appShell is ContentControl contentControl)
             {
-                Window.Current.Content = rootFrame;
-                //Pass the container to the main page
-                rootFrame.Navigate(typeof(MainPage), Container);
+                Window.Current.Content = contentControl;
             }
         }
 
         protected override Task OnStartAsync(StartArgs startArgs)
         {
+            // Navigate to your main view
+            var regionManager = Container.Resolve<IRegionManager>();
+            regionManager.AddToRegion("Root", Container.Resolve<MainView>());
+            regionManager.RequestNavigate("Root", "MainView", new NavigationParameters
+            {
+                { "StartArgs", startArgs }
+            });
+
             Window.Current.Activate();
             return Task.CompletedTask;
         }
     }
 
-## Register your views
-
-After sending the `container` from last step to MainPage, you can get in your MainPage's `OnNavigatedTo` method and register your pages for navigation:
-    
-    public sealed partial class MainPage : Page
-    {
-        private  UniversalPrism.Core.Container.IContainerProvider container;
-
-        public MainPage()
-        {
-            this.InitializeComponent();
-            this.Loaded += MainPage_Loaded;
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.Parameter is  UniversalPrism.Core.Container.IContainerProvider containerProvider)
-            {
-                this.container = containerProvider;
-            }
-        }
-
-        private void MainPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            var regionManager = container.Resolve<UniversalPrism.View.Regions.IRegionManager>();
-            regionManager.RegisterViewWithRegion("Main", typeof(MainView));
-        }
-    }
 
 ## UniversalPrism.Interactivity
 

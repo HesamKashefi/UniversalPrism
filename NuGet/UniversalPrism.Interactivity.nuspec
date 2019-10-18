@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>UniversalPrism.Interactivity</id>
-    <version>1.0.0-preview8</version>
+    <version>1.0.0-preview9</version>
     <authors>HesamKa</authors>
     <owners>HesamKa</owners>
     
@@ -23,7 +23,7 @@
        This library adds ability to show ContentDialogs in UniversalPrism.
     </summary>
 
-    <releaseNotes>Support for more windows versions</releaseNotes>
+    <releaseNotes>Removed unused navigation types, added strings to resources</releaseNotes>
     
     <copyright>Copyright 2019</copyright>
     
