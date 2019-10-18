@@ -1,8 +1,9 @@
+using CommonServiceLocator;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using CommonServiceLocator;
+using UniversalPrism.View.Properties;
 
 namespace UniversalPrism.View.Regions
 {
@@ -46,7 +47,7 @@ namespace UniversalPrism.View.Regions
             if (!typeof(IRegionBehavior).IsAssignableFrom(behaviorType))
             {
                 throw new ArgumentException(
-                    string.Format(Thread.CurrentThread.CurrentCulture, "CanOnlyAddTypesThatInheritIFromRegionBehavior", behaviorType.Name), nameof(behaviorType));
+                    string.Format(Thread.CurrentThread.CurrentCulture, Resources.CanOnlyAddTypesThatInheritIFromRegionBehavior, behaviorType.Name), nameof(behaviorType));
             }
 
             // Only add the behaviorKey if it doesn't already exists.
@@ -68,7 +69,7 @@ namespace UniversalPrism.View.Regions
             if (!this.ContainsKey(key))
             {
                 throw new ArgumentException(
-                    string.Format(Thread.CurrentThread.CurrentCulture, "TypeWithKeyNotRegistered", key), nameof(key));
+                    string.Format(Thread.CurrentThread.CurrentCulture, Resources.TypeWithKeyNotRegistered, key), nameof(key));
             }
 
             return (IRegionBehavior)this.serviceLocator.GetInstance(this.registeredBehaviors[key]);

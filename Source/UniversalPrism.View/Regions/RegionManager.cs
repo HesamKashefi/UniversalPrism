@@ -1,3 +1,4 @@
+using CommonServiceLocator;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,13 +7,13 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using Windows.UI.Xaml;
-using CommonServiceLocator;
 using UniversalPrism.Core.Delegate;
 using UniversalPrism.View.Common;
+using UniversalPrism.View.Properties;
 using UniversalPrism.View.Regions.Adapters;
 using UniversalPrism.View.Regions.Behaviors;
 using UniversalPrism.View.Regions.Navigation;
+using Windows.UI.Xaml;
 
 namespace UniversalPrism.View.Regions
 {
@@ -107,7 +108,7 @@ namespace UniversalPrism.View.Regions
             }
 
             return regionWrapper;
-        } 
+        }
         #endregion
 
         #region Region Manager
@@ -149,7 +150,7 @@ namespace UniversalPrism.View.Regions
                 throw new ArgumentNullException(nameof(target));
 
             target.SetValue(RegionManagerProperty, value);
-        } 
+        }
         #endregion
 
         #region Region Context
@@ -191,9 +192,9 @@ namespace UniversalPrism.View.Regions
                 throw new ArgumentNullException(nameof(target));
 
             target.SetValue(RegionContextProperty, value);
-        } 
+        }
         #endregion
-        
+
         private static void CreateRegion(DependencyObject element)
         {
             IServiceLocator locator = ServiceLocator.Current;
@@ -230,7 +231,7 @@ namespace UniversalPrism.View.Regions
                 Exception rootException = ex.GetRootException();
 
                 throw new UpdateRegionsException(string.Format(CultureInfo.CurrentCulture,
-                    "UpdateRegionException - {0}", rootException), ex.InnerException);
+                    Resources.UpdateRegionException, rootException), ex.InnerException);
             }
         }
 
@@ -245,7 +246,7 @@ namespace UniversalPrism.View.Regions
         public RegionManager()
         {
             _regionCollection = new RegionCollection(this);
-        } 
+        }
         #endregion
 
         /// <summary>
@@ -273,7 +274,7 @@ namespace UniversalPrism.View.Regions
         public IRegionManager AddToRegion(string regionName, object view)
         {
             if (!Regions.ContainsRegionWithName(regionName))
-                throw new ArgumentException(string.Format(Thread.CurrentThread.CurrentCulture, "RegionNotFound - {0}", regionName), nameof(regionName));
+                throw new ArgumentException(string.Format(Thread.CurrentThread.CurrentCulture, Resources.RegionNotFound, regionName), nameof(regionName));
 
             return Regions[regionName].Add(view);
         }
@@ -310,7 +311,7 @@ namespace UniversalPrism.View.Regions
             regionViewRegistry.RegisterViewWithRegion(regionName, getContentDelegate);
 
             return this;
-        } 
+        }
         #endregion
 
         #region Navigation Request
@@ -461,7 +462,7 @@ namespace UniversalPrism.View.Regions
                     IRegion region = GetRegionByName(regionName);
                     if (region == null)
                     {
-                        throw new KeyNotFoundException(string.Format(CultureInfo.CurrentUICulture, "RegionNotInRegionManagerException - {0}", regionName));
+                        throw new KeyNotFoundException(string.Format(CultureInfo.CurrentUICulture, Resources.RegionNotInRegionManagerException, regionName));
                     }
 
                     return region;
@@ -477,13 +478,13 @@ namespace UniversalPrism.View.Regions
 
                 if (region.Name == null)
                 {
-                    throw new InvalidOperationException("RegionNameCannotBeEmptyException");
+                    throw new InvalidOperationException(Resources.RegionNameCannotBeEmptyException);
                 }
 
                 if (this.GetRegionByName(region.Name) != null)
                 {
                     throw new ArgumentException(string.Format(CultureInfo.InvariantCulture,
-                                                              "RegionNameExistsException - {0}", region.Name));
+                        Resources.RegionNameExistsException, region.Name));
                 }
 
                 this.regions.Add(region);
@@ -531,7 +532,7 @@ namespace UniversalPrism.View.Regions
                     throw new ArgumentNullException(nameof(region));
 
                 if (region.Name != null && region.Name != regionName)
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "RegionManagerWithDifferentNameException - {0} - {1}", region.Name, regionName), nameof(regionName));
+                    throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.RegionManagerWithDifferentNameException, region.Name, regionName), nameof(regionName));
 
                 if (region.Name == null)
                     region.Name = regionName;
@@ -550,7 +551,7 @@ namespace UniversalPrism.View.Regions
 
                 handler?.Invoke(this, notifyCollectionChangedEventArgs);
             }
-        } 
+        }
         #endregion
     }
 }

@@ -1,12 +1,13 @@
+using CommonServiceLocator;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using Windows.UI.Xaml;
-using CommonServiceLocator;
+using UniversalPrism.View.Properties;
 using UniversalPrism.View.Regions.Navigation;
+using Windows.UI.Xaml;
 
 namespace UniversalPrism.View.Regions
 {
@@ -73,12 +74,12 @@ namespace UniversalPrism.View.Regions
             {
                 if (this.name != null && this.name != value)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "CannotChangeRegionNameException - {0}", this.name));
+                    throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.CannotChangeRegionNameException, this.name));
                 }
 
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("RegionNameCannotBeEmptyException");
+                    throw new ArgumentException(Resources.RegionNameCannotBeEmptyException);
                 }
 
                 this.name = value;
@@ -212,7 +213,7 @@ namespace UniversalPrism.View.Regions
         {
             if (string.IsNullOrEmpty(viewName))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "StringCannotBeNullOrEmpty - {0}", "viewName"));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.StringCannotBeNullOrEmpty, nameof(viewName)));
             }
 
             return this.Add(view, viewName, false);
@@ -337,7 +338,7 @@ namespace UniversalPrism.View.Regions
             {
                 if (this.ItemMetadataCollection.FirstOrDefault(x => x.Name == viewName) != null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "RegionViewNameExistsException - {0}", viewName));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.RegionViewNameExistsException, viewName));
                 }
                 itemMetadata.Name = viewName;
             }
@@ -358,7 +359,7 @@ namespace UniversalPrism.View.Regions
             ItemMetadata itemMetadata = this.ItemMetadataCollection.FirstOrDefault(x => x.Item == view);
 
             if (itemMetadata == null)
-                throw new ArgumentException($"ViewNotInRegionException - {nameof(view)}", nameof(view));
+                throw new ArgumentException(Resources.ViewNotInRegionException, view.ToString());
 
             return itemMetadata;
         }

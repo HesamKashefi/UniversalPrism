@@ -20,7 +20,7 @@ namespace UniversalPrism.View.Regions
         /// <exception cref="InvalidOperationException">Every time this method is called.</exception>
         public override void Deactivate(object view)
         {
-            throw new InvalidOperationException("DeactivateNotPossibleException");
+            throw new InvalidOperationException("Region deactivate not possible for AllActiveRegion");
         }
     }
 }

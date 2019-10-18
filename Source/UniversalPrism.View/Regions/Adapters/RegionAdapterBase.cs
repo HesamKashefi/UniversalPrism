@@ -1,7 +1,8 @@
 using System;
 using System.Globalization;
-using Windows.UI.Xaml;
+using UniversalPrism.View.Properties;
 using UniversalPrism.View.Regions.Behaviors;
+using Windows.UI.Xaml;
 
 namespace UniversalPrism.View.Regions.Adapters
 {
@@ -126,7 +127,7 @@ namespace UniversalPrism.View.Regions.Adapters
                 throw new ArgumentNullException(nameof(regionTarget));
 
             if (!(regionTarget is T castObject))
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "AdapterInvalidTypeException - {0}", typeof(T).Name));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.AdapterInvalidTypeException, typeof(T).Name));
 
             return castObject;
         }

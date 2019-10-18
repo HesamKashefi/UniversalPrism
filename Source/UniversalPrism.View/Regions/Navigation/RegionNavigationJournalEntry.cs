@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using UniversalPrism.View.Properties;
 
 namespace UniversalPrism.View.Regions.Navigation
 {
@@ -29,7 +30,7 @@ namespace UniversalPrism.View.Regions.Navigation
         {
             if (this.Uri != null)
             {
-                return string.Format(CultureInfo.CurrentCulture, "RegionNavigationJournalEntry:'{0}'", this.Uri.ToString());
+                return string.Format(CultureInfo.CurrentCulture, Resources.RegionNavigationJournalEntry, this.Uri);
             }
 
             return base.ToString();

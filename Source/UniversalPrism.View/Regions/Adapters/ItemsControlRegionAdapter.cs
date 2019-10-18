@@ -1,4 +1,5 @@
 using System;
+using UniversalPrism.View.Properties;
 using Windows.UI.Xaml.Controls;
 
 namespace UniversalPrism.View.Regions.Adapters
@@ -38,7 +39,7 @@ namespace UniversalPrism.View.Regions.Adapters
 
             if (itemsSourceIsSet)
             {
-                throw new InvalidOperationException("ItemsControlHasItemsSourceException");
+                throw new InvalidOperationException(Resources.ItemsControlHasItemsSourceException);
             }
 
             // If control has child items, move them to the region and then bind control to region. Can't set ItemsSource if child items exist.

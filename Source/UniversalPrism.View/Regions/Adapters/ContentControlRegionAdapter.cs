@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Specialized;
 using System.Linq;
+using UniversalPrism.View.Properties;
 using Windows.UI.Xaml.Controls;
 
 namespace UniversalPrism.View.Regions.Adapters
@@ -34,7 +35,7 @@ namespace UniversalPrism.View.Regions.Adapters
             contentIsSet = contentIsSet || (regionTarget.GetBindingExpression(ContentControl.ContentProperty) != null);
 
             if (contentIsSet)
-                throw new InvalidOperationException("ContentControlHasContentException");
+                throw new InvalidOperationException(Resources.ContentControlHasContentException);
 
             region.ActiveViews.CollectionChanged += delegate
             {

@@ -2,7 +2,7 @@
 
 namespace QuickStart.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : BindableBase
     {
         private string _title = "Main View";
         public string Title

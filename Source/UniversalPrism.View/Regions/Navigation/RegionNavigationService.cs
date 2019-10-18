@@ -1,10 +1,11 @@
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Windows.UI.Xaml;
-using CommonServiceLocator;
 using UniversalPrism.View.Common;
+using UniversalPrism.View.Properties;
+using Windows.UI.Xaml;
 
 namespace UniversalPrism.View.Regions.Navigation
 {
@@ -17,7 +18,7 @@ namespace UniversalPrism.View.Regions.Navigation
         private readonly IServiceLocator serviceLocator;
         private readonly IRegionNavigationContentLoader regionNavigationContentLoader;
         private readonly IRegionNavigationJournal journal;
-        private NavigationContext currentNavigationContext; 
+        private NavigationContext currentNavigationContext;
         #endregion
 
         #region Ctor
@@ -47,7 +48,7 @@ namespace UniversalPrism.View.Regions.Navigation
         /// Gets the journal.
         /// </summary>
         /// <value>The journal.</value>
-        public IRegionNavigationJournal Journal => this.journal; 
+        public IRegionNavigationJournal Journal => this.journal;
         #endregion
 
         #region Events
@@ -79,7 +80,7 @@ namespace UniversalPrism.View.Regions.Navigation
         private void RaiseNavigationFailed(NavigationContext navigationContext, Exception error)
         {
             NavigationFailed?.Invoke(this, new RegionNavigationFailedEventArgs(navigationContext, error));
-        } 
+        }
         #endregion
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace UniversalPrism.View.Regions.Navigation
                 throw new ArgumentNullException(nameof(source));
 
             if (this.Region == null)
-                throw new InvalidOperationException("NavigationServiceHasNoRegion");
+                throw new InvalidOperationException(Resources.NavigationServiceHasNoRegion);
 
             this.currentNavigationContext = new NavigationContext(this, source, navigationParameters);
 

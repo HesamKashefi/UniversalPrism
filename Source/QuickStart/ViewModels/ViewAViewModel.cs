@@ -4,7 +4,7 @@ using UniversalPrism.Interactivity;
 
 namespace QuickStart.ViewModels
 {
-    public class ViewAViewModel : ViewModelBase
+    public class ViewAViewModel : BindableBase
     {
         private readonly IDialogService _dialogService;
 

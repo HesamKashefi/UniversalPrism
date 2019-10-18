@@ -1,4 +1,5 @@
 using System;
+using UniversalPrism.View.Properties;
 
 namespace UniversalPrism.View.Regions
 {
@@ -19,7 +20,7 @@ namespace UniversalPrism.View.Regions
             {
                 if (this.IsAttached)
                 {
-                    throw new InvalidOperationException("RegionBehaviorRegionCannotBeSetAfterAttach");
+                    throw new InvalidOperationException(Resources.RegionBehaviorRegionCannotBeSetAfterAttach);
                 }
 
                 this.region = value;
@@ -38,7 +39,7 @@ namespace UniversalPrism.View.Regions
         {
             if (this.region == null)
             {
-                throw new InvalidOperationException("RegionBehaviorAttachCannotBeCallWithNullRegion");
+                throw new InvalidOperationException(Resources.RegionBehaviorAttachCannotBeCallWithNullRegion);
             }
 
             IsAttached = true;

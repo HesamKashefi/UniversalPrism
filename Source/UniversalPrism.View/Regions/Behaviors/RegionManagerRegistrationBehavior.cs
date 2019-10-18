@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using UniversalPrism.View.Properties;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
@@ -46,7 +47,7 @@ namespace UniversalPrism.View.Regions.Behaviors
             {
                 if (IsAttached)
                 {
-                    throw new InvalidOperationException("HostControlCannotBeSetAfterAttach");
+                    throw new InvalidOperationException(Resources.HostControlCannotBeSetAfterAttach);
                 }
                 this.hostControl = value;
             }

@@ -1,11 +1,12 @@
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using CommonServiceLocator;
 using UniversalPrism.Core.Common;
 using UniversalPrism.Core.Delegate;
 using UniversalPrism.View.Common;
+using UniversalPrism.View.Properties;
 
 namespace UniversalPrism.View.Regions
 {
@@ -102,7 +103,7 @@ namespace UniversalPrism.View.Regions
                 }
 
                 throw new ViewRegistrationException(string.Format(CultureInfo.CurrentCulture,
-                    "OnViewRegisteredException - {0} - {1}", e.RegionName, rootException), ex.InnerException);
+                          Resources.OnViewRegisteredException, e.RegionName, rootException), ex.InnerException);
             }
         }
     }

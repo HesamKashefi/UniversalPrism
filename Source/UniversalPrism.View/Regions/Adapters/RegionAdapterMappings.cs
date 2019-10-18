@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using UniversalPrism.View.Properties;
 
 namespace UniversalPrism.View.Regions.Adapters
 {
@@ -28,7 +29,7 @@ namespace UniversalPrism.View.Regions.Adapters
 
             if (mappings.ContainsKey(controlType))
                 throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
-                                                                  "MappingExistsException", controlType.Name));
+                    Resources.MappingExistsException, controlType.Name));
 
             mappings.Add(controlType, adapter);
         }
@@ -56,7 +57,7 @@ namespace UniversalPrism.View.Regions.Adapters
                 }
                 currentType = currentType.BaseType;
             }
-            throw new KeyNotFoundException(string.Format(CultureInfo.CurrentCulture, "NoRegionAdapterException", controlType));
+            throw new KeyNotFoundException(string.Format(CultureInfo.CurrentCulture, Resources.NoRegionAdapterException, controlType));
         }
     }
 }

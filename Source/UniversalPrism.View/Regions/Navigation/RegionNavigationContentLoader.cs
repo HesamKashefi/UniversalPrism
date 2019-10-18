@@ -1,10 +1,11 @@
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Windows.UI.Xaml;
-using CommonServiceLocator;
 using UniversalPrism.View.Common;
+using UniversalPrism.View.Properties;
+using Windows.UI.Xaml;
 
 namespace UniversalPrism.View.Regions.Navigation
 {
@@ -98,7 +99,7 @@ namespace UniversalPrism.View.Regions.Navigation
             catch (ActivationException e)
             {
                 throw new InvalidOperationException(
-                    string.Format(CultureInfo.CurrentCulture, "CannotCreateNavigationTarget - {0}", candidateTargetContract), e);
+                    string.Format(CultureInfo.CurrentCulture, Resources.CannotCreateNavigationTarget, candidateTargetContract), e);
             }
             return newRegionItem;
         }

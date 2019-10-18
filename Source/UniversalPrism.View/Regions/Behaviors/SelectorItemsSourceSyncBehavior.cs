@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using UniversalPrism.View.Properties;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -50,7 +51,7 @@ namespace UniversalPrism.View.Regions.Behaviors
 
             if (itemsSourceIsSet)
             {
-                throw new InvalidOperationException("ItemsControlHasItemsSourceException");
+                throw new InvalidOperationException(Resources.ItemsControlHasItemsSourceException);
             }
 
             this.SynchronizeItems();
